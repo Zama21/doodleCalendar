@@ -1,0 +1,56 @@
+.wrapperSideMenu {
+    position: fixed;
+    overflow: auto;
+    right: 0;
+    z-index: 13;
+    height: 100vh;
+    min-width: 20vw;
+    max-width: 50%;
+    padding: 0.5em 1em 1em 1em;
+
+    transform: translateX(100%);
+
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    transition: all 1.5s ease;
+}
+.wrapperSideMenu.isOpen {
+    transform: translateX(0);
+}
+
+.RightArrow {
+    font-size: 50px;
+    cursor: pointer;
+}
+.wrapperSideMenu ul {
+    margin-top: 1em;
+}
+
+.wrapperSideMenu ul li:not(:last-child) {
+    margin-bottom: 1em;
+}
+
+.wrapperSideMenu ul li {
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0.5em;
+    /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
+}
+.wrapperSideMenu ul li::after {
+    content: '';
+    display: block;
+
+    width: 0;
+    height: 0px;
+    transition: all 0.5s ease;
+    background-color: black;
+    border-radius: 2px;
+}
+.wrapperSideMenu ul li:hover::after {
+    height: 2px;
+    width: 100%;
+}

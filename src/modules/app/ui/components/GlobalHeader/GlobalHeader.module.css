@@ -58,3 +58,22 @@
     font-style: normal;
     margin-left: 10px;
 }
+
+.wrapperNavBar {
+    display: flex;
+    align-items: center;
+    gap: 1.5em;
+    height: 100%;
+}
+
+.wrapperImgUser {
+    cursor: pointer;
+    height: 95%;
+    aspect-ratio: 1/1;
+}
+
+.imgUser {
+    height: 100%;
+    width: 100%;
+    border-radius: 100%;
+}

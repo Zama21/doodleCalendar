@@ -2,7 +2,8 @@ import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import { Role } from '../../../../auth/store/slices/authSlice.js';
 import { PrivateRoute } from '../../../../auth/ui/components/PrivateRoute/PrivateRoute.jsx';
 import { LoginPage } from '../../../../auth/ui/pages/LoginPage/LoginPage.jsx';
-import HomePage from 'modules/home/ui/pages/HomePage/HomePage.jsx';
+import EventsPage from 'modules/events/ui/pages/EventsPage/EventsPage.jsx';
+import CalendarPage from 'modules/pages/CalendarPage/CalendarPage.jsx';
 
 export const AppRouter = () => {
     return (
@@ -10,7 +11,7 @@ export const AppRouter = () => {
             <Route path='/'>
                 {/* all users */}
                 <Route path='/'>
-                    <Route path='/' element={<HomePage />} />
+                    <Route path='/' element={<EventsPage />} />
 
                     <Route path='auth'>
                         <Route path='login' element={<LoginPage />} />
@@ -19,7 +20,8 @@ export const AppRouter = () => {
 
                 {/* authed users */}
                 <Route path='/' element={<PrivateRoute roles={[Role.User]} />}>
-                    <Route path='home' element={<HomePage />} />
+                    <Route path='events' element={<EventsPage />} />
+                    <Route path='calendar' element={<CalendarPage />} />
                 </Route>
 
                 {/* authed and admins */}

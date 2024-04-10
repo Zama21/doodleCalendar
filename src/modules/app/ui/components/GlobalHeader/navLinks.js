@@ -17,8 +17,4 @@ export const privateNavLinks = [
         title: 'Кабинеты',
         to: '/some',
     },
-    {
-        title: 'Профиль',
-        to: '/some',
-    },
 ];

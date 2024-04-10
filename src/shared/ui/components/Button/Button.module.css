@@ -1,0 +1,48 @@
+.button {
+    color: #fff;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+
+    line-height: 39px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+
+    font-size: 0.8rem;
+    min-height: 40px;
+    min-width: 250px;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+
+    margin: 6px;
+}
+
+.button:hover {
+}
+
+.primary {
+    background: linear-gradient(45deg, #923a65, #b44577);
+    border: 1px solid #923a65;
+}
+
+.primary:hover {
+    font-size: 0.85rem;
+    background: linear-gradient(45deg, #b44577, #923a65);
+}
+
+.secondary {
+    color: black;
+    background-color: #ebebeb;
+}
+
+.secondary:hover {
+    background-color: lightgray;
+}
+
+.withImg {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: center;
+}

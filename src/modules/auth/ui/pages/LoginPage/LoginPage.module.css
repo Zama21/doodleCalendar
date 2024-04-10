@@ -1,0 +1,9 @@
+.formActionButton {
+    margin-top: 20px;
+}
+
+.googleButtonCont {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}

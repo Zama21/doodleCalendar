@@ -1,0 +1,16 @@
+.wrapperJoinUsImg {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.joinUsImg {
+    width: 60%;
+    height: auto;
+}
+.keyword {
+    font-weight: 700;
+    font-size: 1.2rem;
+    font-style: italic;
+}

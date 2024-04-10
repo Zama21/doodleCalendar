@@ -1,0 +1,102 @@
+.container {
+    position: relative;
+    display: block;
+    max-height: 100%;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 12px 20px;
+    border-radius: 6px;
+    width: 100%;
+    min-height: 30px;
+    max-height: 100%;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: all 1s ease;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.inputClassName {
+    display: none;
+}
+.toggleArrow {
+    transform-origin: center;
+    transform: rotate(0deg);
+    transition: all 0.3s ease;
+}
+.toggleArrow.active {
+    transform: rotate(180deg);
+}
+
+.optionsList {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: calc(100% + 10px);
+    max-height: 200px;
+    overflow-y: auto;
+    background: rgb(255, 255, 255);
+    z-index: 1;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+    &::-webkit-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 5px;
+    }
+
+    &::-moz-scrollbar {
+        width: 10px;
+    }
+    &::-moz-scrollbar-thumb {
+        background-color: #888;
+        border-radius: 5px;
+    }
+}
+
+.option {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 0;
+    height: 50px;
+    /* margin: 5px; */
+    cursor: pointer;
+    background: rgb(255, 255, 255);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.13);
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1); */
+    /* border: 10px solid rgba(255, 255, 255, 0.3); */
+    border-radius: 10px;
+    transition: color 0.3s ease, background-color 0.55s ease;
+}
+
+.option:hover {
+    background-color: rgb(146, 58, 101);
+    color: #fff;
+}
+
+.option.active {
+    background-color: rgb(146, 58, 101);
+    color: #fff;
+}
+
+.clearSelectionOption {
+    color: red;
+    background-color: rgba(255, 0, 0, 0.1);
+}
+
+.error {
+    color: red;
+}

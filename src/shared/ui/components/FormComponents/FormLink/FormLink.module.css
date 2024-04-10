@@ -1,0 +1,12 @@
+.link {
+    text-decoration: none;
+    color: green;
+    font-weight: bold;
+    margin-top: 10px;
+    display: block;
+    text-align: center;
+}
+
+.link:hover {
+    text-decoration: underline;
+}

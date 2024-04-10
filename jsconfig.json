@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "jsx": "preserve",
+        "paths": {
+            "shared/*": ["./src/shared/*"],
+            "modules/*": ["./src/modules/*"]
+        }
+    },
+    "exclude": ["node_modules", "**/node_modules/*"]
+}

@@ -1,0 +1,10 @@
+.error {
+    padding: 6px;
+}
+
+.message {
+    text-align: center;
+    color: red;
+    font-size: 18px;
+    font-weight: 700;
+}

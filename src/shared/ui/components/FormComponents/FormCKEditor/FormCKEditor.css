@@ -1,0 +1,35 @@
+.ck-content {
+    min-height: 400px;
+}
+/*
+.ck-content li {
+    list-style: disc inside;
+} */
+
+.ck-content ul {
+    list-style-type: disc;
+    padding-left: 3em;
+    line-height: 1.5em;
+}
+
+.ck-content ol {
+    list-style-type: decimal;
+    padding-left: 3em;
+    line-height: 1.5em;
+}
+.ck-content li p {
+    text-indent: 0;
+}
+
+.ck-content {
+    padding: 1rem !important;
+}
+
+.ck-content p,
+.ck-content h1,
+.ck-content h2,
+.ck-content h3 {
+    margin: 0 !important;
+    text-indent: 1rem;
+    line-height: 1.5em;
+}

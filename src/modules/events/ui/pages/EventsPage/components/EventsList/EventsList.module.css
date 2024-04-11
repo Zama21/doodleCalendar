@@ -1,0 +1,63 @@
+.eventsList {
+    position: relative;
+    display: flex;
+    height: 100%;
+
+    flex-direction: column;
+    border-right: 1px solid rgb(0, 0, 0);
+    transition: all 700ms ease;
+}
+.eventsList.close {
+    position: absolute;
+    transform: translateX(-100%);
+}
+.eventsList.open {
+    position: absolute;
+    transform: translateX(0);
+}
+
+.headerEventsList {
+    background-color: #ddd;
+    padding: 1em;
+}
+.events {
+    flex: 1;
+    overflow: auto;
+    background-color: aliceblue;
+}
+
+.eventsList h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.eventsList ul {
+    min-height: 100%;
+}
+
+.eventsList ul:first-child {
+    margin-top: 2.5%;
+}
+
+.eventsList li {
+    margin: 0 auto;
+    margin-bottom: 0.5em;
+    width: 95%;
+
+    cursor: pointer;
+    background-color: #007bff;
+    border-radius: 20px;
+    padding: 1.5em;
+}
+
+.wrapperBtnCreateEvents {
+    text-align: center;
+}
+.createEventButton {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}

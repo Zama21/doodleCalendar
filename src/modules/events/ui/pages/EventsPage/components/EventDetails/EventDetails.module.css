@@ -1,0 +1,72 @@
+.eventDetails {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+}
+
+.headerEventDetails {
+    background-color: #ddd;
+    padding: 1em;
+}
+
+.eventDetails h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+.wrapperSearchForm {
+    display: flex;
+    gap: 0.7em;
+    width: 100%;
+    height: 42px;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+.itemForm {
+    display: flex;
+    height: 100%;
+    aspect-ratio: 1/1;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 25px;
+    color: #005500;
+    border-radius: 100%;
+    cursor: pointer;
+    user-select: none;
+}
+.formSearch {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    background: #a3d0c3;
+    transition: all 700ms ease;
+}
+
+.formSearch.focused {
+    width: calc(100% - 42px - 42px - 0.7em - 0.7em);
+}
+.formSearch input,
+button {
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.formSearch input {
+    width: 100%;
+    height: 42px;
+    padding-left: 15px;
+}
+.formSearch button {
+    height: 42px;
+    width: 42px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+}
+.formSearch button:before {
+    content: '\1F50D';
+    font-size: 16px;
+    color: #f9f0da;
+}

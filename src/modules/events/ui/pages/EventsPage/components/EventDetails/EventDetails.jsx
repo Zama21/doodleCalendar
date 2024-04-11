@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import cls from './EventDetails.module.css';
 import EventDetailsContent from './components/EventDetailsContent/EventDetailsContent';
 import UserSearchResults from './components/UserSearchResults/UserSearchResults';
@@ -21,6 +21,10 @@ export default function EventDetails() {
     useEffect(() => {
         updateFiltered(searchValue, false);
     }, [unsavedSelectedUsers]);
+
+    useEffect(() => {
+        updateFiltered(searchValue);
+    }, [getAllUsers()]);
 
     function handleSearchSubmit(event) {
         event.preventDefault();

@@ -133,7 +133,7 @@ export class EventsPageApi {
                     },
                 ];
                 resolve(users);
-            }, 1000);
+            }, 2000);
         });
     }
     // static async removeFromLibrary(bookId) {

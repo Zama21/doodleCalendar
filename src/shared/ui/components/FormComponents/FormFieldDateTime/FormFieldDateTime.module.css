@@ -1,0 +1,45 @@
+.wrapperDateTime {
+    position: relative;
+}
+
+/* .dateTime {
+    display: inline-block;
+    margin-right: 1em;
+} */
+
+/* .dateTime input {
+    margin-bottom: 10px;
+    padding: 2px 5px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+} */
+
+.error {
+    color: red;
+    /* font-weight: 700; */
+}
+
+.field {
+    width: 100%;
+}
+
+.container {
+    display: block;
+    margin: 10px 6px;
+}
+
+.wrapperDateTime input[type='datetime-local'] {
+    background-color: #0080ff;
+    padding: 0.5em;
+    margin: 0.5em 0;
+    color: #ffffff;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+}
+::-webkit-calendar-picker-indicator {
+    background-color: #ffffff;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 3px;
+}

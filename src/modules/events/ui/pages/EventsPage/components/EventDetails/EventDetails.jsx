@@ -35,16 +35,14 @@ export default function EventDetails() {
     }
 
     function handleInputChange(event) {
-        const inputValue = event.target.value.toLowerCase();
+        const inputValue = event.target.value.toLowerCase().trim();
         setSearchValue(event.target.value);
         updateFiltered(inputValue, true);
     }
     function getFilteredUsers(inputValue, isDelete) {
         const tempArr = getAllUsers().filter(user => {
-            return (
-                user.name.toLowerCase().includes(inputValue) ||
-                user.surname.toLowerCase().includes(inputValue) ||
-                user.patronymic.toLowerCase().includes(inputValue)
+            return `${user.surname.toLowerCase()} ${user.name.toLowerCase()} ${user.patronymic.toLowerCase()}`.includes(
+                inputValue
             );
         });
         if (isDelete) {
@@ -102,7 +100,11 @@ export default function EventDetails() {
         <div className={cls.eventDetails}>
             <div className={cls.headerEventDetails}>
                 <h2>Информация о мероприятии</h2>
-                <div className={cls.wrapperSearchForm}>
+                <div
+                    className={classNames(cls.wrapperSearchForm, {
+                        [cls.focused]: isSearchFocused,
+                    })}
+                >
                     <form
                         onSubmit={handleSearchSubmit}
                         className={classNames(cls.formSearch, {
@@ -112,29 +114,31 @@ export default function EventDetails() {
                         <input
                             type='text'
                             placeholder={`${
-                                isSearchFocused ? '' : 'Добавьте участников...'
+                                isSearchFocused
+                                    ? 'Начните писать...'
+                                    : 'Добавьте участников...'
                             }`}
                             onFocus={handleSearchFocus}
                             onChange={handleInputChange}
                         />
                         <button type='submit'></button>
                     </form>
-                    {isSearchFocused && (
-                        <>
-                            <div
-                                className={cls.itemForm}
-                                onClick={handleCheckMarkClick}
-                            >
-                                &#10004;
-                            </div>
-                            <div
-                                className={cls.itemForm}
-                                onClick={handleCrossClick}
-                            >
-                                &#10060;
-                            </div>
-                        </>
-                    )}
+                    <div
+                        className={classNames(cls.itemForm, {
+                            [cls.visible]: isSearchFocused,
+                        })}
+                        onClick={handleCheckMarkClick}
+                    >
+                        &#10004;
+                    </div>
+                    <div
+                        className={classNames(cls.itemForm, cls.cancel, {
+                            [cls.visible]: isSearchFocused,
+                        })}
+                        onClick={handleCrossClick}
+                    >
+                        &#10060;
+                    </div>
                 </div>
             </div>
             {isSearchFocused && <UserSearchResults />}

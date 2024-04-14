@@ -5,9 +5,9 @@
     flex-direction: column;
     border-right: 1px solid rgb(0, 0, 0);
     transform: translateX(100%);
-    background-color: rebeccapurple;
 
     transition: all 700ms ease;
+    background-color: rgb(255 255 255);
 }
 
 .wrapperSelectedUsers.open {
@@ -18,35 +18,54 @@
 }
 
 .headerSelectedUsers {
-    background-color: #ddd;
-    padding: 1em;
+    padding: 10px;
 }
-
+.headerSelectedUsers h2::before {
+    content: '~';
+    margin-right: 8px;
+}
+.headerSelectedUsers h2::after {
+    content: '~';
+    margin-left: 8px;
+}
 .headerSelectedUsers h2 {
     text-align: center;
-    font-size: 24px;
-    margin-bottom: 10px;
+    margin-right: 16px;
+    font-size: 1.1rem;
 }
 .contentSelectedUsers {
     display: flex;
     flex-direction: column;
     flex: 1;
-
-    background-color: aliceblue;
 }
-.contentSelectedUsers h3 {
+/* .contentSelectedUsers h3 {
     text-align: center;
     font-size: 24px;
     margin-bottom: 10px;
-}
+} */
 
 .selectedUsers {
     flex: 4;
     padding: 10px;
     overflow: auto;
-    background-color: aquamarine;
 }
 .busySelectedUsers {
-    flex: 3;
-    background-color: rgb(7, 96, 66);
+    z-index: 100;
+    flex: 2;
+    padding: 10px;
+    box-shadow: inset 0 0 12px 0px rgba(255, 0, 0, 0.5);
+    border-radius: 20px 20px 0 20px;
+}
+.busySelectedUsers h3 {
+    text-align: center;
+    margin-right: 16px;
+    font-size: 1.1rem;
+}
+.busySelectedUsers h3::before {
+    content: '~';
+    margin-right: 8px;
+}
+.busySelectedUsers h3::after {
+    content: '~';
+    margin-left: 8px;
 }

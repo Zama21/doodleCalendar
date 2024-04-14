@@ -30,7 +30,7 @@ export default function UserItem({ user }) {
                         } else return item;
                     });
                 });
-                return [...prev, { ...user, isCheckedDefault: true }];
+                return [{ ...user, isCheckedDefault: true }, ...prev];
             }
         });
     };

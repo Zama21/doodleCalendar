@@ -1,6 +1,37 @@
 .eventDetailsContent {
     flex: 1;
     overflow: auto;
-    background-color: red;
-    padding: 10px;
+    padding: 0px 10px 10px 10px;
+}
+.wrapperNameAndRoom {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.wrapperNameAndRoom > label,
+.wrapperNameAndRoom > div {
+    flex: 1;
+}
+.wrapperDates {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100%;
+}
+
+.submitBtn {
+    border-radius: 20px;
+}
+
+@media (max-width: 1000px) {
+    .wrapperNameAndRoom {
+        flex-direction: column;
+    }
 }

@@ -8,7 +8,10 @@ export default defineConfig({
     resolve: {
         alias: [
             { find: 'shared', replacement: path.join(__dirname, 'src/shared') },
-            { find: 'modules', replacement: path.join(__dirname, 'src/modules') },
+            {
+                find: 'modules',
+                replacement: path.join(__dirname, 'src/modules'),
+            },
         ],
     },
 });

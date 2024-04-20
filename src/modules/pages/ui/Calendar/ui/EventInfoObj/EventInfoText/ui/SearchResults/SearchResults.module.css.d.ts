@@ -1,5 +1,5 @@
 declare const styles: {
-  readonly "wrapperCalendarPage": string;
+  readonly "wrapperSearchResults": string;
 };
 export = styles;
 

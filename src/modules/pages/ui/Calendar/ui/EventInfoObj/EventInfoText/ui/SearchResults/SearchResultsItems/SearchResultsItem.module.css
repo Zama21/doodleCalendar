@@ -1,0 +1,19 @@
+.userItem {
+    position: relative;
+    display: flex;
+    gap: 0.5em;
+
+    min-height: 35px;
+    border-radius: 20px;
+    padding: 0.7em;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05),
+        0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+}
+
+.userItem {
+    margin-bottom: 0.75rem;
+}

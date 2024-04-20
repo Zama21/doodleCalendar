@@ -1,6 +1,7 @@
-/* .wrapperCalendarPage {
+/* .wrapperCalendar {
     display: flex;
     overflow: auto;
+    flex-direction: column;
     flex-grow: 1;
     height: 100%;
     width: 95%;
@@ -10,22 +11,36 @@
     max-height: calc(100vh - 65px - 65px);
 } */
 
-.wrapperCalendarPage {
-    display: flex;
-    overflow: auto;
-    flex-grow: 1;
-    height: 100%;
-    width: 95%;
-    margin: 1em auto;
-    border-radius: 20px;
-    border: 1px solid rgb(0, 0, 0);
-    max-height: calc(100vh - 65px - 65px);
-}
-
-/* .wrapperCalendar {
+.wrapperPage {
     display: flex;
     overflow: auto;
     flex-direction: column;
+    flex-grow: 1;
+    /* height: 100%; */
+    width: 97%;
+    margin: 1em auto;
+    /* border-radius: 0 0 20px 20px; */
+    border-radius: 20px;
+    border: 1px solid rgb(0, 0, 0);
+    max-height: calc(100vh - 65px - 65px);
+
+    overflow: hidden;
+}
+.wrapperComboBox {
+    width: 100%;
+    /* margin: 0 auto; */
+    width: 95%;
+    margin: 0.5rem auto;
+    margin-bottom: 1rem;
+    z-index: 19;
+}
+.wrapperComboBox p {
+    margin-bottom: 0.25rem;
+}
+
+/* .wrapperCalendarPage {
+    display: flex;
+    overflow: auto;
     flex-grow: 1;
     height: 100%;
     width: 95%;

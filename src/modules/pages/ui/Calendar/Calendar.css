@@ -1,0 +1,9 @@
+.rbc-events-container {
+    margin-right: 0 !important;
+}
+
+.rbc-calendar {
+    width: 100%;
+    flex: 1;
+    height: auto;
+}

@@ -9,9 +9,8 @@ import ModalAlert from '../Modals/ModalAlert/ModalAlert.jsx';
 
 const ModalsLayer = () => {
     const dispatch = useDispatch();
-    const { isOpen, currentModalType, isShowingClosingAnimation, modalParams } = useSelector(
-        state => state.modals.data
-    );
+    const { isOpen, currentModalType, isShowingClosingAnimation, modalParams } =
+        useSelector(state => state.modals.data);
 
     const hideModal = () => {
         dispatch(modalsActions.setData({ isShowingClosingAnimation: true }));

@@ -43,7 +43,7 @@ export default function SideMenu({ isOpen, closeSideMenu }) {
                     <NavLink to='/calendar'>Календарь</NavLink>
                 </li>
                 <li>
-                    <NavLink to='/cabinets'>Кабинеты</NavLink>
+                    <NavLink to='/rooms'>Кабинеты</NavLink>
                 </li>
                 <li>
                     <NavLink to='/logout'>Выход</NavLink>

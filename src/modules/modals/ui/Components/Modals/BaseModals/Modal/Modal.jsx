@@ -15,7 +15,7 @@ const Backdrop = props => {
 
         document.body.style.position = 'fixed';
         document.body.style.top = `-${scrollY}px`;
-        document.body.style.paddingRight = `16px`;
+        // document.body.style.paddingRight = `16px`;
 
         return () => {
             // document.body.style.overflow = 'auto';
@@ -24,7 +24,7 @@ const Backdrop = props => {
 
             document.body.style.position = '';
             document.body.style.top = '';
-            document.body.style.paddingRight = ``;
+            // document.body.style.paddingRight = ``;
             window.scrollTo(0, scrollY);
         };
     }, [scrollY]);

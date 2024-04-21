@@ -10,6 +10,8 @@
     margin: 0 auto; */
 }
 .wrapperDay ul li {
+    display: flex;
+    justify-content: space-around;
     padding: 10px;
 
     width: fit-content;
@@ -25,6 +27,12 @@
 }
 .wrapperDay ul li:first-child {
     margin-top: 1rem;
+}
+
+.deleteRange {
+    cursor: pointer;
+    height: 30px;
+    aspect-ratio: 1/1;
 }
 
 /* .wrapperDay ul > li:nth-child(10n + 1) {

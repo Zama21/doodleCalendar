@@ -59,7 +59,7 @@ function createDay(obj, startDate, setDaysArr) {
     });
 }
 
-function createAllBusyDay(setDaysArr, startDate, obj) {
+function createAllBusyDay(setDaysArr, startDate, obj, id) {
     updateLocalArrDays(startDate, obj);
     const day = startDate.getDate();
     const monthId = startDate.getMonth();
@@ -73,6 +73,7 @@ function createAllBusyDay(setDaysArr, startDate, obj) {
                 isAllBusy: true,
                 monthId,
                 day,
+                id: id,
             },
         ];
     });
@@ -109,11 +110,11 @@ function checkDayInArray(arr, targetDay) {
     return arr.some(item => item.day === targetDay);
 }
 
-export default function BusyRangeList({ busyRanges }) {
+export default function BusyRangeList({ busyRanges, removeRangeById }) {
     let [daysArr, setDaysArr] = useState([]);
 
-    // console.log(busyRanges);
-    // console.log(mergeOverlappingDates(busyRanges));
+    console.log('=======');
+    console.log(mergeOverlappingDates(busyRanges)[0]?.id);
 
     useEffect(() => {
         const obj = {
@@ -128,6 +129,7 @@ export default function BusyRangeList({ busyRanges }) {
             const startDate = new Date(range.startDate);
             const endDate = new Date(range.endDate);
             const day = startDate.getDate();
+            console.log(range);
             if (isSameDay(startDate, endDate)) {
                 if (obj.prevDay != day) {
                     createDay(obj, startDate, setDaysArr);
@@ -138,14 +140,18 @@ export default function BusyRangeList({ busyRanges }) {
                 const endDateCopy = new Date(endDate);
 
                 if (
-                    startDateCopy.getHours() !== 0 &&
-                    startDateCopy.getMinutes() !== 0
+                    !(
+                        startDateCopy.getHours() === 0 &&
+                        startDateCopy.getMinutes() === 0
+                    )
                 ) {
                     startDateCopy.setHours(23);
                     startDateCopy.setMinutes(59);
+                    console.log(range);
                     const newRange = {
                         startDate: range.startDate,
                         endDate: formatDateToISO(startDateCopy),
+                        id: range.id,
                     };
                     if (!checkDayInArray(obj.arrDays, startDate.getDate())) {
                         createDay(obj, startDate, setDaysArr);
@@ -161,7 +167,7 @@ export default function BusyRangeList({ busyRanges }) {
                     startDateCopy.getMinutes() === 0 &&
                     !isSameDay(startDateCopy, endDateCopy)
                 ) {
-                    createAllBusyDay(setDaysArr, startDateCopy, obj);
+                    createAllBusyDay(setDaysArr, startDateCopy, obj, range.id);
                     startDateCopy.setDate(startDateCopy.getDate() + 1);
                 }
 
@@ -169,22 +175,24 @@ export default function BusyRangeList({ busyRanges }) {
                     endDateCopy.getHours() === 23 &&
                     endDateCopy.getMinutes() === 59
                 ) {
-                    createAllBusyDay(setDaysArr, startDateCopy, obj);
+                    createAllBusyDay(setDaysArr, startDateCopy, obj, range.id);
                 } else {
                     if (
                         !checkDayInArray(obj.arrDays, startDateCopy.getDate())
                     ) {
-                        createDay(obj, startDateCopy, setDaysArr);
+                        createDay(obj, startDateCopy, setDaysArr, range.id);
                     }
+                    console.log(range);
                     const newRange = {
                         startDate: formatDateToISO(startDateCopy),
                         endDate: range.endDate,
+                        id: range.id,
                     };
                     updateDay(newRange, setDaysArr);
                 }
             }
         });
-    }, [busyRanges]);
+    }, [busyRanges, busyRanges[0]?.id]);
 
     console.log(daysArr);
 
@@ -199,49 +207,11 @@ export default function BusyRangeList({ busyRanges }) {
                         isLeft={day.isLeft}
                         ranges={day.ranges}
                         isAllBusy={day.isAllBusy}
+                        removeRangeById={removeRangeById}
+                        id={day.id}
                     ></Day>
                 );
             })}
-            {/* <div className={classNames(cls.wrapperDay, cls.left)}>
-                <div className={cls.day}>10 мая</div>
-                <div className={cls.timeList}>
-                    <ul>
-                        <li>13:00 - 23:00</li>
-                        <li>1:23 - 2:00</li>
-                        <li>5:13 - 16:00</li>
-                        <li>13:00 - 23:00</li> <li>13:00 - 23:00</li>
-                        <li>1:23 - 2:00</li>
-                        <li>5:13 - 16:00</li>
-                        <li>13:00 - 23:00</li> <li>13:00 - 23:00</li>
-                        <li>1:23 - 2:00</li>
-                        <li>5:13 - 16:00</li>
-                        <li>13:00 - 23:00</li> <li>13:00 - 23:00</li>
-                        <li>1:23 - 2:00</li>
-                        <li>5:13 - 16:00</li>
-                        <li>13:00 - 23:00</li>
-                    </ul>
-                </div>
-            </div> */}
-            {/* <div className={classNames(cls.wrapperDay, cls.right)}></div>
-            <div className={classNames(cls.wrapperDay, cls.left)}></div>
-            <div className={classNames(cls.wrapperDay, cls.right)}></div>
-            <div className={classNames(cls.wrapperDay, cls.left)}></div>
-            <div className={classNames(cls.wrapperDay, cls.right)}></div>
-            <div className={classNames(cls.wrapperDay, cls.left)}></div>
-            <div className={classNames(cls.wrapperDay, cls.right)}></div>
-            <div className={classNames(cls.wrapperDay, cls.left)}></div> */}
-
-            {/* <h3>Диапазоны занятости:</h3> */}
-            {/* <ul>
-                    {busyRanges.map((range, index) => {
-                        console.log(new Date(range.startDate));
-                        return (
-                            <li key={index}>
-                                {range.startDate} - {range.endDate}
-                            </li>
-                        );
-                    })}
-                </ul> */}
         </div>
     );
 }

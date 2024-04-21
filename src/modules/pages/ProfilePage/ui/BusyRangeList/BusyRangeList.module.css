@@ -1,0 +1,21 @@
+.wrapper {
+    height: 100%;
+    border-top: 1px transparent solid;
+    border-bottom: 1px transparent solid;
+    border-radius: 10px 20px 20px 20px;
+    /* background: linear-gradient(#007bff, orange, deeppink, purple) border-box; */
+    background: linear-gradient(
+        45deg,
+        #ff7878,
+        #ffc898,
+        #fff89a,
+        #cdf2ca,
+        #a2cdcd,
+        #d1e8e4,
+        #cab8ff
+    );
+    background-position-y: -1px;
+    overflow: hidden;
+
+    /* background: #007bff; */
+}

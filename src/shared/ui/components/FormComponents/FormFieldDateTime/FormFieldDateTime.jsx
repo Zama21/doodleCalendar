@@ -16,7 +16,6 @@ export const FormFieldDateTime = ({
 
     const handleDateChange = e => {
         helpers.setValue(e.target.value);
-        console.log(e.target.value);
     };
     return (
         <div className={classNames(cls.container, containerClassName)}>

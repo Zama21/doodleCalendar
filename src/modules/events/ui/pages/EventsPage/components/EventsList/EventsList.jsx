@@ -32,7 +32,7 @@ export default function EventsList() {
                     </div>
                     <div className={cls.events}>
                         <ul>
-                            <li>Разнос студентов</li>
+                            <li>Выволочка студентов</li>
                             <li>
                                 Награждение за самый креативный способ прогулки
                                 занятий

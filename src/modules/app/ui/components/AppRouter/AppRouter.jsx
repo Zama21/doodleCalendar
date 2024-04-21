@@ -5,6 +5,7 @@ import { LoginPage } from '../../../../auth/ui/pages/LoginPage/LoginPage.jsx';
 import EventsPage from 'modules/events/ui/pages/EventsPage/EventsPage.jsx';
 import CalendarPage from 'modules/pages/CalendarPage/CalendarPage.jsx';
 import RoomsPage from 'modules/pages/RoomsPage/RoomsPage.jsx';
+import ProfilePage from 'modules/pages/ProfilePage/ProfilePage.jsx';
 
 export const AppRouter = () => {
     return (
@@ -24,6 +25,7 @@ export const AppRouter = () => {
                     <Route path='events' element={<EventsPage />} />
                     <Route path='calendar' element={<CalendarPage />} />
                     <Route path='rooms' element={<RoomsPage />} />
+                    <Route path='profile' element={<ProfilePage />} />
                 </Route>
 
                 {/* authed and admins */}

@@ -34,19 +34,29 @@ export default function SideMenu({ isOpen, closeSideMenu }) {
             >{`→`}</span>
             <ul>
                 <li>
-                    <NavLink to='/profile'>Профиль</NavLink>
+                    <NavLink to='/profile' onClick={() => closeSideMenu(0)}>
+                        Профиль
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/events'>Мероприятия</NavLink>
+                    <NavLink to='/events' onClick={() => closeSideMenu(0)}>
+                        Мероприятия
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/calendar'>Календарь</NavLink>
+                    <NavLink to='/calendar' onClick={() => closeSideMenu(0)}>
+                        Календарь
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/rooms'>Кабинеты</NavLink>
+                    <NavLink to='/rooms' onClick={() => closeSideMenu(0)}>
+                        Кабинеты
+                    </NavLink>
                 </li>
                 <li>
-                    <NavLink to='/logout'>Выход</NavLink>
+                    <NavLink to='/logout' onClick={() => closeSideMenu(0)}>
+                        Выход
+                    </NavLink>
                 </li>
             </ul>
         </div>

@@ -1,1 +1,3 @@
-This is a bookstore application
+`npm i` # установка зависимостей
+`npm run dev` # запуск в дев режиме
+

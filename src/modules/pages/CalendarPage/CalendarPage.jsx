@@ -5,6 +5,7 @@ import { CalendarApi } from 'modules/events/api/EventsPageApi/CalendarApi';
 
 export default function CalendarPage() {
     const [events, setEvents] = useState([]);
+    console.log(events);
 
     useEffect(() => {
         CalendarApi.getAllEvents()

@@ -113,8 +113,8 @@ function checkDayInArray(arr, targetDay) {
 export default function BusyRangeList({ busyRanges, removeRangeById }) {
     let [daysArr, setDaysArr] = useState([]);
 
-    console.log('=======');
-    console.log(mergeOverlappingDates(busyRanges)[0]?.id);
+    // console.log('=======');
+    // console.log(mergeOverlappingDates(busyRanges)[0]?.id);
 
     useEffect(() => {
         const obj = {
@@ -194,7 +194,7 @@ export default function BusyRangeList({ busyRanges, removeRangeById }) {
         });
     }, [busyRanges, busyRanges[0]?.id]);
 
-    console.log(daysArr);
+    // console.log(daysArr);
 
     return (
         <div className={cls.wrapper}>

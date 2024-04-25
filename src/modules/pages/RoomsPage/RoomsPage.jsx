@@ -52,6 +52,8 @@ export default function RoomsPage() {
     const [resources, setResources] = useState([]);
     const [selectedOptions, setSelectedOptions] = useState([]);
 
+    console.log(selectedOptions);
+
     useEffect(() => {
         CalendarApi.getAllEvents()
             .then(res => {

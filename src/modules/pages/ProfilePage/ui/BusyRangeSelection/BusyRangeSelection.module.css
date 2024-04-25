@@ -1,22 +1,56 @@
 .form {
+    position: relative;
     display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-bottom: 1rem;
+    border: #007bff 8px solid;
+    border-radius: 20px;
+    width: fit-content;
+    min-width: 600px;
+    padding: 1rem;
+
+}
+.dateInputFormContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+
 }
 
 .wrapperDates {
     display: flex;
-    align-items: center;
     flex-wrap: wrap;
+    align-items: center;
 }
+
 .wrapperDate {
     display: flex;
     align-items: center;
 }
+
 .btnCreate {
     border-radius: 100%;
+    width: 40px;
     height: 40px;
-    width: auto;
-    aspect-ratio: 1/1;
+    text-align: center;
+
 }
+
+.errorValidationBox {
+    border-radius: 20px;
+    padding: 1rem;
+    color: white;
+    background: linear-gradient(to left, #a00000,#cc0000);
+}
+.errorValidationBox p {
+    margin-bottom: 0.5rem;
+}
+.errorValidationBox p:last-child {
+    margin-bottom: 0;
+}
+

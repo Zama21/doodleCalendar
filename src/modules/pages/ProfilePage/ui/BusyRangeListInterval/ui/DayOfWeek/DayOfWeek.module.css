@@ -11,12 +11,14 @@
 }
 .wrapperDay ul li {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
     margin-bottom: 1rem;
     border-radius: 10px;
 
     width: fit-content;
-    min-width: 200px;
+    min-width: 400px;
     padding: 10px;
     box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05),
         0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
@@ -29,11 +31,7 @@
     margin-top: 1rem;
 }
 
-.deleteRange {
-    height: 30px;
-    cursor: pointer;
-    aspect-ratio: 1/1;
-}
+
 
 .day {
     margin: 0.5rem auto;
@@ -108,4 +106,26 @@
     right: 0;
     top: calc(-1 * var(--b));
     transform: rotate(180deg);
+}
+
+
+
+.fadeEnter {
+  opacity: 0;
+  transition: opacity 5000ms;
+}
+
+.fadeEnterActive {
+  opacity: 1;
+  transition: opacity 5000ms;
+}
+
+.fadeExit {
+  opacity: 1;
+  transition: opacity 5000ms;
+}
+
+.fadeExitActive {
+  opacity: 0;
+  transition: opacity 5000ms;
 }

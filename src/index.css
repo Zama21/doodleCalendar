@@ -2,12 +2,12 @@
 
 body,
 html {
+    overflow-x: hidden;
     margin: 0;
-    padding: 0;
     width: 100%;
     min-height: 100%;
+    padding: 0;
     font-family: 'Roboto Condensed', sans-serif;
-    overflow-x: hidden;
 }
 
 html {
@@ -18,9 +18,9 @@ html {
 *,
 *:before,
 *:after {
-    box-sizing: inherit;
     margin: 0;
     padding: 0;
+    box-sizing: inherit;
 }
 /* * {
     scroll-behavior: unset;
@@ -30,19 +30,19 @@ input,
 textarea,
 button,
 select {
+    border: 0;
     font-family: inherit;
     font-size: inherit;
     color: inherit;
     background-color: transparent;
-    border: 0;
 }
 
 button,
 input[type='submit'] {
     display: inline-block;
     box-shadow: none;
-    background-color: transparent;
     background: none;
+    background-color: transparent;
     cursor: pointer;
 }
 
@@ -54,34 +54,34 @@ button:active {
 }
 
 button::-moz-focus-inner {
-    padding: 0;
     border: 0;
+    padding: 0;
 }
 
 #root {
-    width: 100%;
     /* height: 1px; */
     /* height: 100vh; */
 
     display: flex;
     flex-direction: column;
+    width: 100%;
     min-height: 100vh;
 }
 
 .mainContent {
     display: flex;
+    flex-grow: 1;
     flex-direction: column;
     align-items: stretch;
     width: 100%;
-    flex-grow: 1;
     padding-top: 65px;
     background-color: #f5f5f5;
 }
 
 .wrapperPage {
     margin: 0 auto;
-    padding-top: 50px;
     max-width: 1000px;
+    padding-top: 50px;
 }
 
 .ck-powered-by {
@@ -112,10 +112,27 @@ button::-moz-focus-inner {
 }
 
 a {
-    color: black;
     text-decoration: none;
+    color: black;
 }
 ul,
 ol {
     list-style: none;
+}
+
+.fade-enter {
+  opacity: 0; /* Начальное состояние - невидимый */
+}
+.fade-enter-active {
+  opacity: 1; /* Анимация к полностью видимому состоянию */
+  transition: opacity 5000ms; /* Длительность анимации */
+}
+
+/* Анимация исчезновения */
+.fade-exit {
+  opacity: 1; /* Начальное состояние - видимый */
+}
+.fade-exit-active {
+  opacity: 0; /* Анимация к полностью невидимому состоянию */
+  transition: opacity 5000ms; /* Длительность анимации */
 }

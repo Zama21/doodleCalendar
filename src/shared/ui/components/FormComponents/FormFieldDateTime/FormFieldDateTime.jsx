@@ -10,6 +10,8 @@ export const FormFieldDateTime = ({
     labelClassName,
     inputClassName,
     errorClassName,
+    IsShowError = true,
+    type = 'datetime-local',
     ...props
 }) => {
     const [field, meta, helpers] = useField(props);
@@ -25,13 +27,13 @@ export const FormFieldDateTime = ({
                 </span>
                 <div className={cls.wrapperDateTime}>
                     <input
-                        type='datetime-local'
+                        type={type}
                         value={field.value}
                         onChange={handleDateChange}
                     />
                 </div>
             </div>
-            {meta.touched && meta.error ? (
+            {meta.touched && meta.error && IsShowError ? (
                 <div className={classNames(cls.error, errorClassName)}>
                     {meta.error}
                 </div>

@@ -1,0 +1,23 @@
+.wrapperSwitcherBox {
+    overflow: hidden;
+    border-radius: 20px 20px 0 0;
+}
+
+.switchStates {
+    display: flex;
+    margin-bottom: 1rem;
+}
+.state {
+    padding: 1rem;
+    text-align: center;
+    background-color: white;
+    transition: all 1s ease, color 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+.state.selected {
+    flex: 1;
+    color: white;
+    background-color: #007bff;
+}

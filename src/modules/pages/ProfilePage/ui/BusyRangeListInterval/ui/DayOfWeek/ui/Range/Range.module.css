@@ -1,0 +1,43 @@
+.wrapperControlBtn {
+    display: flex;
+    align-items: baseline;
+    height: 30px;
+    gap: 0.5rem;
+}
+
+.save, .deleteRange,.showDays {
+    height: 100%;
+    cursor: pointer;
+    user-select: none;
+}
+.deleteRange {
+    color: rgba(255, 0, 0, 0.75);
+}
+
+.save {
+    color: rgba(151, 252, 0, 0.75);
+}
+
+.showDays {
+    color: rgb(0 123 255);
+    transition: all 0.5s ease;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+.header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.wrapperDays {
+    border: 3px white solid;
+    border-bottom: 0;
+
+    background-color: rgb(73 159 252);
+}
+.clsShow {
+    bottom: -10px !important;
+}

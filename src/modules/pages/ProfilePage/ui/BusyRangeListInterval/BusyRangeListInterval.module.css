@@ -13,3 +13,22 @@
         #cab8ff
     );
 }
+.fadeEnter {
+  opacity: 0;
+  transition: opacity 5000ms;
+}
+
+.fadeEnterActive {
+  opacity: 1;
+  transition: opacity 5000ms;
+}
+
+.fadeExit {
+  opacity: 1;
+  transition: opacity 5000ms;
+}
+
+.fadeExitActive {
+  opacity: 0;
+  transition: opacity 5000ms;
+}

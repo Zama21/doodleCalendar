@@ -18,7 +18,7 @@ export default function SwitcherBox({
     return (
         <div className={cls.wrapperSwitcherBox}>
             <div className={cls.switchStates}>
-                {states.map(state => {
+                {states.map((state) => {
                     return (
                         <div
                             className={classNames(cls.state, {
@@ -34,10 +34,7 @@ export default function SwitcherBox({
             </div>
             <div className={cls.content}>
                 {selectedState === 'Единоразовые' && (
-                    <BusyRangeList
-                        busyRanges={busyRanges}
-                        removeRangeById={removeRangeById}
-                    />
+                    <BusyRangeList busyRanges={busyRanges} removeRangeById={removeRangeById} />
                 )}
                 {selectedState === 'Повторяющиеся' && (
                     <BusyRangeListInterval

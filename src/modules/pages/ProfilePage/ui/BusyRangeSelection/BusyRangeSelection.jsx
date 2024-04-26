@@ -6,6 +6,7 @@ import { FormFieldDateTime } from 'shared/ui/components/FormComponents/FormField
 import { FormButton } from 'shared/ui/components/FormComponents/FormButton/FormButton';
 import classNames from 'classnames';
 import DaysOfWeek from 'shared/ui/components/DaysOfWeek/DaysOfWeek';
+import { getId } from 'shared/lib/getId.js';
 
 const currentDate = new Date()
     .toLocaleString('sv', {
@@ -36,10 +37,7 @@ const isEndTimeValid = function (value) {
         const endHour = parseInt(endTime.split(':')[0]);
         const endMinute = parseInt(endTime.split(':')[1]);
 
-        if (
-            endHour > startHour ||
-            (endHour === startHour && endMinute > startMinute)
-        ) {
+        if (endHour > startHour || (endHour === startHour && endMinute > startMinute)) {
             return true;
         }
         return false;
@@ -48,7 +46,7 @@ const isEndTimeValid = function (value) {
 };
 
 function getSelectedIds(arr) {
-    return arr.filter(item => item.isSelected).map(item => item.id);
+    return arr.filter((item) => item.isSelected).map((item) => item.id);
 }
 
 export default function BusyRangeSelection({
@@ -74,8 +72,8 @@ export default function BusyRangeSelection({
     //     // Например, с помощью обратного вызова, переданного из родительского компонента
     // };
 
-    const handleDayClick = index => {
-        setDaysOfTheWeek(prev => {
+    const handleDayClick = (index) => {
+        setDaysOfTheWeek((prev) => {
             const updatedDays = [...prev];
             updatedDays[index] = {
                 ...updatedDays[index],
@@ -96,14 +94,9 @@ export default function BusyRangeSelection({
                 }}
                 validationSchema={Yup.object({
                     startDate: Yup.date()
-                        .max(
-                            Yup.ref('endDate'),
-                            'Начальная дата не может быть позже конечной даты!'
-                        )
+                        .max(Yup.ref('endDate'), 'Начальная дата не может быть позже конечной даты!')
                         .required('Все даты должны быть заданы!'),
-                    endDate: Yup.date().required(
-                        'Все даты должны быть заданы!'
-                    ),
+                    endDate: Yup.date().required('Все даты должны быть заданы!'),
                     endTime: Yup.string().test(
                         'is-greater',
                         'Конечное время должно быть позже начального!',
@@ -114,21 +107,22 @@ export default function BusyRangeSelection({
                     console.log('OnSubmit');
 
                     if (isShowDayOfTheWeek) {
-                        setBusyRangesInterval(prev => {
+                        setBusyRangesInterval((prev) => {
                             return [
                                 ...prev,
-                                ...getSelectedIds(daysOfTheWeek).map(id => {
+                                ...getSelectedIds(daysOfTheWeek).map((id) => {
                                     return {
                                         startTime: values.startTime,
                                         endTime: values.endTime,
                                         dayId: id,
+                                        id: getId(),
                                     };
                                 }),
                             ];
                         });
                         setDaysOfTheWeek(initialDaysOfTheWeek);
                     } else
-                        setBusyRanges(prev => {
+                        setBusyRanges((prev) => {
                             return [
                                 ...prev,
                                 {
@@ -139,7 +133,7 @@ export default function BusyRangeSelection({
                         });
                 }}
             >
-                {formik => (
+                {(formik) => (
                     <Form onSubmit={formik.handleSubmit} className={cls.form}>
                         <div className={cls.dateInputFormContainer}>
                             <div className={cls.wrapperDates}>
@@ -191,29 +185,15 @@ export default function BusyRangeSelection({
                             formik.touched.endTime &&
                             formik.touched.startTime && (
                                 <div className={cls.errorValidationBox}>
-                                    {formik.errors.startDate &&
-                                        formik.touched.startDate && (
-                                            <p>
-                                                Ошибка валидации:{' '}
-                                                {formik.errors.startDate}
-                                            </p>
-                                        )}
-                                    {formik.errors.endDate &&
-                                        formik.touched.endDate && (
-                                            <p>
-                                                {' '}
-                                                Ошибка валидации:{' '}
-                                                {formik.errors.endDate}
-                                            </p>
-                                        )}
-                                    {formik.errors.endTime &&
-                                        formik.touched.endTime && (
-                                            <p>
-                                                {' '}
-                                                Ошибка валидации:{' '}
-                                                {formik.errors.endTime}
-                                            </p>
-                                        )}
+                                    {formik.errors.startDate && formik.touched.startDate && (
+                                        <p>Ошибка валидации: {formik.errors.startDate}</p>
+                                    )}
+                                    {formik.errors.endDate && formik.touched.endDate && (
+                                        <p> Ошибка валидации: {formik.errors.endDate}</p>
+                                    )}
+                                    {formik.errors.endTime && formik.touched.endTime && (
+                                        <p> Ошибка валидации: {formik.errors.endTime}</p>
+                                    )}
                                 </div>
                             )}
 

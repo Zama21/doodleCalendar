@@ -7,7 +7,7 @@ import { label } from 'shared/ui/components/FormComponents/FormField/FormField.m
 
 function addIdsToArrayObjects(arr) {
     arr.forEach((item, index) => {
-        item.id = index + 1;
+        item.id = getId();
     });
     return arr;
 }
@@ -21,12 +21,6 @@ const initialDaysOfTheWeek = [
     { id: 5, label: 'Сб', isSelected: false },
     { id: 6, label: 'Вс', isSelected: false },
 ];
-function assignUniqueIdToObjects(objects) {
-    for (let i = 0; i < objects.length; i++) {
-        objects[i].id = i + 1;
-    }
-    return objects;
-}
 
 export default function ProfilePage() {
     const [busyRanges, setBusyRanges] = useState([]);
@@ -37,15 +31,15 @@ export default function ProfilePage() {
 
     // console.log(busyRanges);
     console.log(busyRangesInterval);
-    useEffect(() => {
-        setBusyRangesInterval(prev => assignUniqueIdToObjects(prev));
-    }, [busyRangesInterval]);
+    // useEffect(() => {
+    //     setBusyRangesInterval((prev) => addIdsToArrayObjects(prev));
+    // }, []);
 
-    useEffect(() => {
-        setBusyRanges(prev => {
-            return addIdsToArrayObjects(prev);
-        });
-    }, [busyRanges]);
+    // useEffect(() => {
+    //     setBusyRanges((prev) => {
+    //         return addIdsToArrayObjects(prev);
+    //     });
+    // }, []);
 
     useEffect(() => {
         if (selectedState === 'Повторяющиеся') setIsShowDayOfTheWeek(true);
@@ -53,10 +47,10 @@ export default function ProfilePage() {
     }, [selectedState]);
 
     function removeRangeById(id) {
-        setBusyRanges(prev => prev.filter(item => item.id != id));
+        setBusyRanges((prev) => prev.filter((item) => item.id != id));
     }
     function removeRangeIntervalById(id) {
-        setBusyRangesInterval(prev => prev.filter(item => item.id != id));
+        setBusyRangesInterval((prev) => prev.filter((item) => item.id != id));
     }
     const switcherBoxObj = {
         busyRanges,
@@ -76,9 +70,7 @@ export default function ProfilePage() {
                 className={cls.profileImage}
             />
             <div className={cls.wrapperUserBusyness}>
-                <p>
-                    Здравствуйте, Мария Юрьевна, укажите время, когда вы заняты:
-                </p>
+                <p>Здравствуйте, Мария Юрьевна, укажите время, когда вы заняты:</p>
                 <BusyRangeSelection
                     setBusyRanges={setBusyRanges}
                     setBusyRangesInterval={setBusyRangesInterval}

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 body,
 html {
@@ -7,7 +7,7 @@ html {
     width: 100%;
     min-height: 100%;
     padding: 0;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 html {
@@ -38,7 +38,7 @@ select {
 }
 
 button,
-input[type='submit'] {
+input[type="submit"] {
     display: inline-block;
     box-shadow: none;
     background: none;
@@ -121,18 +121,18 @@ ol {
 }
 
 .fade-enter {
-  opacity: 0; /* Начальное состояние - невидимый */
+    opacity: 0; /* Начальное состояние - невидимый */
 }
 .fade-enter-active {
-  opacity: 1; /* Анимация к полностью видимому состоянию */
-  transition: opacity 5000ms; /* Длительность анимации */
+    opacity: 1; /* Анимация к полностью видимому состоянию */
+    transition: opacity 1000ms; /* Длительность анимации */
 }
 
 /* Анимация исчезновения */
 .fade-exit {
-  opacity: 1; /* Начальное состояние - видимый */
+    opacity: 1; /* Начальное состояние - видимый */
 }
 .fade-exit-active {
-  opacity: 0; /* Анимация к полностью невидимому состоянию */
-  transition: opacity 5000ms; /* Длительность анимации */
+    opacity: 0; /* Анимация к полностью невидимому состоянию */
+    transition: opacity 1000ms; /* Длительность анимации */
 }

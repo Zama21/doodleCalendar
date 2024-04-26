@@ -14,22 +14,18 @@ const initialDaysOfTheWeek = [
     { id: 6, label: 'Вс', isSelected: false },
 ];
 function getSelectedIds(arr) {
-    return arr.filter(item => item.isSelected).map(item => item.id);
+    return arr.filter((item) => item.isSelected).map((item) => item.id);
 }
 
-export default function Range({
-    range,
-    removeRangeIntervalById,
-    setBusyRangesInterval,
-}) {
+export default function Range({ range, removeRangeIntervalById, setBusyRangesInterval }) {
     const [isShowDayOfTheWeek, setIsShowDayOfTheWeek] = useState(false);
     const [daysOfTheWeek, setDaysOfTheWeek] = useState(initialDaysOfTheWeek);
     const [IsShow, setIsShow] = useState(true);
     //nsole.log(range);
 
     useEffect(() => {
-        setDaysOfTheWeek(prev =>
-            prev.map(item => {
+        setDaysOfTheWeek((prev) =>
+            prev.map((item) => {
                 return {
                     ...item,
                     isSelected: range.dayId === item.id,
@@ -38,8 +34,8 @@ export default function Range({
         );
     }, [range]);
 
-    const handleDayClick = index => {
-        setDaysOfTheWeek(prev => {
+    const handleDayClick = (index) => {
+        setDaysOfTheWeek((prev) => {
             const updatedDays = [...prev];
             updatedDays[index] = {
                 ...updatedDays[index],
@@ -51,10 +47,10 @@ export default function Range({
 
     function saveSelectedDays() {
         removeRangeIntervalById(range.id);
-        setBusyRangesInterval(prev => {
+        setBusyRangesInterval((prev) => {
             return [
                 ...prev,
-                ...getSelectedIds(daysOfTheWeek).map(id => {
+                ...getSelectedIds(daysOfTheWeek).map((id) => {
                     return {
                         startTime: range.startTime,
                         endTime: range.endTime,
@@ -65,52 +61,46 @@ export default function Range({
         });
     }
     return (
-        // <CSSTransition
-        //     in={IsShow}
-        //     timeout={5000}
-        //     classNames='fade'
-        //     unmountOnExit
-        // >
-        <li>
-            <div className={cls.header}>
-                <div>{`${range.startTime} - ${range.endTime}`}</div>
-                <div className={cls.wrapperControlBtn}>
-                    <div
-                        className={cls.deleteRange}
-                        onClick={() => {
-                            setIsShow(false);
-                            removeRangeIntervalById(range.id);
-                        }}
-                    >
-                        &#10006;
-                    </div>
-                    <div
-                        className={cls.save}
-                        onClick={() => saveSelectedDays()}
-                    >
-                        &#10003;
-                    </div>
+        <CSSTransition in={IsShow} timeout={1000} classNames='fade' unmountOnExit>
+            <li>
+                <div className={cls.header}>
+                    <div>{`${range.startTime} - ${range.endTime}`}</div>
+                    <div className={cls.wrapperControlBtn}>
+                        <div
+                            className={cls.deleteRange}
+                            onClick={() => {
+                                setIsShow(false);
+                                setTimeout(() => {
+                                    removeRangeIntervalById(range.id);
+                                }, 1000);
+                            }}
+                        >
+                            &#10006;
+                        </div>
+                        <div className={cls.save} onClick={() => saveSelectedDays()}>
+                            &#10003;
+                        </div>
 
-                    <div
-                        className={classNames(cls.showDays, {
-                            [cls.rotate]: isShowDayOfTheWeek,
-                        })}
-                        onClick={() => setIsShowDayOfTheWeek(prev => !prev)}
-                    >
-                        ▼
+                        <div
+                            className={classNames(cls.showDays, {
+                                [cls.rotate]: isShowDayOfTheWeek,
+                            })}
+                            onClick={() => setIsShowDayOfTheWeek((prev) => !prev)}
+                        >
+                            ▼
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <DaysOfWeek
-                isShowDayOfTheWeek={isShowDayOfTheWeek}
-                daysOfTheWeek={daysOfTheWeek}
-                handleDayClick={handleDayClick}
-                clsDay={cls.day}
-                clsWrapperDays={cls.wrapperDays}
-                clsShow={cls.clsShow}
-            />
-        </li>
-        // </CSSTransition>
+                <DaysOfWeek
+                    isShowDayOfTheWeek={isShowDayOfTheWeek}
+                    daysOfTheWeek={daysOfTheWeek}
+                    handleDayClick={handleDayClick}
+                    clsDay={cls.day}
+                    clsWrapperDays={cls.wrapperDays}
+                    clsShow={cls.clsShow}
+                />
+            </li>
+        </CSSTransition>
     );
 }

@@ -21,15 +21,9 @@ export default function DayOfWeek({
     setBusyRangesInterval,
 }) {
     return (
-        <div
-            className={classNames(
-                cls.wrapperDay,
-                { [cls.left]: isLeft },
-                { [cls.right]: !isLeft }
-            )}
-        >
+        <div className={classNames(cls.wrapperDay, { [cls.left]: isLeft }, { [cls.right]: !isLeft })}>
             <div className={cls.day}>{`${
-                DaysOfTheWeekLabels.find(item => item.id === dayOfWeekId).label
+                DaysOfTheWeekLabels.find((item) => item.id === dayOfWeekId).label
             }`}</div>
             <div className={cls.timeList}>
                 <ul>
@@ -37,10 +31,8 @@ export default function DayOfWeek({
                         return (
                             <Range
                                 range={range}
-                                key={ind}
-                                removeRangeIntervalById={
-                                    removeRangeIntervalById
-                                }
+                                key={range.id}
+                                removeRangeIntervalById={removeRangeIntervalById}
                                 setBusyRangesInterval={setBusyRangesInterval}
                             />
                         );

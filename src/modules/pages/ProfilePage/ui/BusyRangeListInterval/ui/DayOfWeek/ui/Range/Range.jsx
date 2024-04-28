@@ -3,6 +3,9 @@ import cls from './Range.module.css';
 import classNames from 'classnames';
 import DaysOfWeek from 'shared/ui/components/DaysOfWeek/DaysOfWeek';
 import { CSSTransition } from 'react-transition-group';
+import { useDispatch } from 'react-redux';
+import { profileActions } from 'modules/pages/ProfilePage/store/profilePageSlice';
+import { getId } from 'shared/lib/getId';
 
 const initialDaysOfTheWeek = [
     { id: 0, label: 'Пн', isSelected: false },
@@ -14,18 +17,18 @@ const initialDaysOfTheWeek = [
     { id: 6, label: 'Вс', isSelected: false },
 ];
 function getSelectedIds(arr) {
-    return arr.filter((item) => item.isSelected).map((item) => item.id);
+    return arr.filter(item => item.isSelected).map(item => item.id);
 }
 
-export default function Range({ range, removeRangeIntervalById, setBusyRangesInterval }) {
+export default function Range({ range, setCountRanges }) {
+    const dispatch = useDispatch();
     const [isShowDayOfTheWeek, setIsShowDayOfTheWeek] = useState(false);
     const [daysOfTheWeek, setDaysOfTheWeek] = useState(initialDaysOfTheWeek);
     const [IsShow, setIsShow] = useState(true);
-    //nsole.log(range);
 
     useEffect(() => {
-        setDaysOfTheWeek((prev) =>
-            prev.map((item) => {
+        setDaysOfTheWeek(prev =>
+            prev.map(item => {
                 return {
                     ...item,
                     isSelected: range.dayId === item.id,
@@ -34,8 +37,8 @@ export default function Range({ range, removeRangeIntervalById, setBusyRangesInt
         );
     }, [range]);
 
-    const handleDayClick = (index) => {
-        setDaysOfTheWeek((prev) => {
+    const handleDayClick = index => {
+        setDaysOfTheWeek(prev => {
             const updatedDays = [...prev];
             updatedDays[index] = {
                 ...updatedDays[index],
@@ -46,23 +49,33 @@ export default function Range({ range, removeRangeIntervalById, setBusyRangesInt
     };
 
     function saveSelectedDays() {
-        removeRangeIntervalById(range.id);
-        setBusyRangesInterval((prev) => {
-            return [
-                ...prev,
-                ...getSelectedIds(daysOfTheWeek).map((id) => {
+        dispatch(profileActions.removeRangeIntervalById(range.id));
+        dispatch(
+            profileActions.addRangesToBusyRangesInterval([
+                ...getSelectedIds(daysOfTheWeek).map(id => {
                     return {
                         startTime: range.startTime,
                         endTime: range.endTime,
                         dayId: id,
+                        id: getId(),
                     };
                 }),
-            ];
-        });
+            ])
+        );
     }
+
     return (
-        <CSSTransition in={IsShow} timeout={1000} classNames='fade' unmountOnExit>
-            <li>
+        <CSSTransition
+            in={IsShow}
+            timeout={450}
+            classNames='fade'
+            unmountOnExit
+        >
+            <li
+                className={classNames(cls.range, {
+                    [cls.bigHeight]: isShowDayOfTheWeek,
+                })}
+            >
                 <div className={cls.header}>
                     <div>{`${range.startTime} - ${range.endTime}`}</div>
                     <div className={cls.wrapperControlBtn}>
@@ -70,14 +83,23 @@ export default function Range({ range, removeRangeIntervalById, setBusyRangesInt
                             className={cls.deleteRange}
                             onClick={() => {
                                 setIsShow(false);
+                                setCountRanges(prev => prev - 1);
+
                                 setTimeout(() => {
-                                    removeRangeIntervalById(range.id);
-                                }, 1000);
+                                    dispatch(
+                                        profileActions.removeRangeIntervalById(
+                                            range.id
+                                        )
+                                    );
+                                }, 450);
                             }}
                         >
                             &#10006;
                         </div>
-                        <div className={cls.save} onClick={() => saveSelectedDays()}>
+                        <div
+                            className={cls.save}
+                            onClick={() => saveSelectedDays()}
+                        >
                             &#10003;
                         </div>
 
@@ -85,7 +107,9 @@ export default function Range({ range, removeRangeIntervalById, setBusyRangesInt
                             className={classNames(cls.showDays, {
                                 [cls.rotate]: isShowDayOfTheWeek,
                             })}
-                            onClick={() => setIsShowDayOfTheWeek((prev) => !prev)}
+                            onClick={() => {
+                                setIsShowDayOfTheWeek(prev => !prev);
+                            }}
                         >
                             ▼
                         </div>

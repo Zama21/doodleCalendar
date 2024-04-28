@@ -4,63 +4,21 @@ import BusyRangeSelection from './ui/BusyRangeSelection/BusyRangeSelection';
 import BusyRangeList from './ui/BusyRangeList/BusyRangeList';
 import SwitcherBox from './ui/SwitcherBox/SwitcherBox';
 import { label } from 'shared/ui/components/FormComponents/FormField/FormField.module.css';
-
-function addIdsToArrayObjects(arr) {
-    arr.forEach((item, index) => {
-        item.id = getId();
-    });
-    return arr;
-}
-
-const initialDaysOfTheWeek = [
-    { id: 0, label: 'Пн', isSelected: false },
-    { id: 1, label: 'Вт', isSelected: false },
-    { id: 2, label: 'Ср', isSelected: false },
-    { id: 3, label: 'Чт', isSelected: false },
-    { id: 4, label: 'Пт', isSelected: false },
-    { id: 5, label: 'Сб', isSelected: false },
-    { id: 6, label: 'Вс', isSelected: false },
-];
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { profileActions } from './store/profilePageSlice';
+import { Formik } from 'formik';
+import BusyRangeSelectionInterval from './ui/BusyRangeSelection/BusyRangeSelectionInterval';
 
 export default function ProfilePage() {
-    const [busyRanges, setBusyRanges] = useState([]);
-    const [busyRangesInterval, setBusyRangesInterval] = useState([]);
-    const [selectedState, setSelectedState] = useState('Единоразовые');
-    const [isShowDayOfTheWeek, setIsShowDayOfTheWeek] = useState(false);
-    const [daysOfTheWeek, setDaysOfTheWeek] = useState(initialDaysOfTheWeek);
-
-    // console.log(busyRanges);
-    console.log(busyRangesInterval);
-    // useEffect(() => {
-    //     setBusyRangesInterval((prev) => addIdsToArrayObjects(prev));
-    // }, []);
-
-    // useEffect(() => {
-    //     setBusyRanges((prev) => {
-    //         return addIdsToArrayObjects(prev);
-    //     });
-    // }, []);
+    const dispatch = useDispatch();
+    const { selectedState } = useSelector(state => state.profile);
 
     useEffect(() => {
-        if (selectedState === 'Повторяющиеся') setIsShowDayOfTheWeek(true);
-        else setIsShowDayOfTheWeek(false);
+        if (selectedState === 'Повторяющиеся')
+            dispatch(profileActions.setIsShowDayOfTheWeek(true));
+        else dispatch(profileActions.setIsShowDayOfTheWeek(false));
     }, [selectedState]);
-
-    function removeRangeById(id) {
-        setBusyRanges((prev) => prev.filter((item) => item.id != id));
-    }
-    function removeRangeIntervalById(id) {
-        setBusyRangesInterval((prev) => prev.filter((item) => item.id != id));
-    }
-    const switcherBoxObj = {
-        busyRanges,
-        removeRangeById,
-        selectedState,
-        setSelectedState,
-        busyRangesInterval,
-        removeRangeIntervalById,
-        setBusyRangesInterval,
-    };
 
     return (
         <div className={cls.wrapperPage}>
@@ -70,15 +28,19 @@ export default function ProfilePage() {
                 className={cls.profileImage}
             />
             <div className={cls.wrapperUserBusyness}>
-                <p>Здравствуйте, Мария Юрьевна, укажите время, когда вы заняты:</p>
-                <BusyRangeSelection
-                    setBusyRanges={setBusyRanges}
-                    setBusyRangesInterval={setBusyRangesInterval}
-                    isShowDayOfTheWeek={isShowDayOfTheWeek}
-                    daysOfTheWeek={daysOfTheWeek}
-                    setDaysOfTheWeek={setDaysOfTheWeek}
-                />
-                <SwitcherBox {...switcherBoxObj} />
+                <p className={cls.description}>
+                    Здравствуйте, Мария Юрьевна! На данной страничке Вы сможете
+                    указать время, когда будете заняты, чтобы Вас не включали в
+                    какие-либо мероприятия. Вы можете указать как единоразовые
+                    диапазоны своей занятости, так и повторяющиеся.
+                </p>
+
+                {selectedState !== 'Повторяющиеся' && <BusyRangeSelection />}
+                {selectedState === 'Повторяющиеся' && (
+                    <BusyRangeSelectionInterval />
+                )}
+
+                <SwitcherBox />
             </div>
         </div>
     );

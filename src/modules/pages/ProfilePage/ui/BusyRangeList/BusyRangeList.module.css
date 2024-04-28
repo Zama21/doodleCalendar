@@ -1,7 +1,8 @@
 .wrapper {
     overflow: hidden;
-    border-radius: 10px 20px 20px 20px;
+    border-radius: 20px 20px 20px 20px;
     height: 100%;
+    padding-bottom: 20px;
     background: linear-gradient(
         45deg,
         #ff7878,
@@ -12,4 +13,15 @@
         #d1e8e4,
         #cab8ff
     );
+}
+
+.alertEmptyList {
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 20px;
+    width: calc(100% - 40px);
+    padding: 1rem;
+    text-align: center;
+    background-color: white;
+
 }

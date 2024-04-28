@@ -122,17 +122,24 @@ ol {
 
 .fade-enter {
     opacity: 0; /* Начальное состояние - невидимый */
+
 }
 .fade-enter-active {
     opacity: 1; /* Анимация к полностью видимому состоянию */
-    transition: opacity 1000ms; /* Длительность анимации */
+    transition: all 0.45s  ease;
 }
 
 /* Анимация исчезновения */
 .fade-exit {
+
     opacity: 1; /* Начальное состояние - видимый */
 }
 .fade-exit-active {
+    overflow: hidden !important;
+    margin: 0 !important;
+    /* width: 100% !important; */
+    height: 0 !important;
+    padding: 0 !important;
     opacity: 0; /* Анимация к полностью невидимому состоянию */
-    transition: opacity 1000ms; /* Длительность анимации */
+    transition: all 0.45s ease;
 }

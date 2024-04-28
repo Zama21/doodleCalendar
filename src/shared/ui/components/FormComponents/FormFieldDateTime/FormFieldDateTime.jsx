@@ -12,6 +12,8 @@ export const FormFieldDateTime = ({
     errorClassName,
     IsShowError = true,
     type = 'datetime-local',
+    maxDateTime,
+    minDateTime,
     ...props
 }) => {
     const [field, meta, helpers] = useField(props);
@@ -30,6 +32,8 @@ export const FormFieldDateTime = ({
                         type={type}
                         value={field.value}
                         onChange={handleDateChange}
+                        min={minDateTime}
+                        max={maxDateTime}
                     />
                 </div>
             </div>

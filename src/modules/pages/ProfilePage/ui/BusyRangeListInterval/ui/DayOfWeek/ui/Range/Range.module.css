@@ -1,3 +1,35 @@
+.range {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+    width: 400px;
+
+    height: 50px;
+    min-width: 400px;
+    padding: 10px;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05),
+        0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+    font-size: 1.5rem;
+    text-align: center;
+    color: aliceblue;
+    background-color: rgba(0, 123, 255, 0.7);
+    transition: all 0.75s ease;
+
+}
+.bigHeight {
+    height: 100px;
+}
+
+/* .range:first-child {
+    margin-top: 1rem;
+} */
+
+
+
 .wrapperControlBtn {
     display: flex;
     align-items: baseline;

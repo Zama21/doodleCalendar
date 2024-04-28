@@ -1,0 +1,26 @@
+.range {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 1rem;
+    border-radius: 10px;
+
+    width: fit-content;
+    height: 50px;
+    min-width: 200px;
+    padding: 10px;
+    box-shadow: 0.25rem 0.25rem 0.6rem rgba(0, 0, 0, 0.05),
+        0 0.5rem 1.125rem rgba(75, 0, 0, 0.05);
+    font-size: 1.5rem;
+    text-align: center;
+    color: aliceblue;
+    background-color: rgba(0, 123, 255, 0.7);
+}
+
+
+.deleteRange {
+    height: 30px;
+    cursor: pointer;
+    user-select: none;
+    aspect-ratio: 1/1;
+}

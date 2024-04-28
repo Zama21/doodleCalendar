@@ -1,20 +1,17 @@
 import classNames from 'classnames';
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import cls from './Day.module.css';
+import { useDispatch } from 'react-redux';
+import { profileActions } from 'modules/pages/ProfilePage/store/profilePageSlice';
+import BusyRange from './ui/BusyRange';
+import { CSSTransition } from 'react-transition-group';
 
-function getTimeFromDate(dateString) {
-    const time = dateString.split('T')[1];
-    return time;
-}
-export default function Day({
-    isLeft,
-    day,
-    id,
-    monthId,
-    ranges,
-    isAllBusy,
-    removeRangeById,
-}) {
+export default function Day({ isLeft, day, id, monthId, ranges, isAllBusy }) {
+    const dispatch = useDispatch();
+    const [valueHeight, setValueHeight] = useState(0);
+    const [countRanges, setCountRanges] = useState(ranges.length);
+    const [IsShow, setIsShow] = useState(true);
+    const wrapperRef = useRef(null);
     const arrMonth = [
         'Января',
         'Февраля',
@@ -29,55 +26,53 @@ export default function Day({
         'Ноября',
         'Декабря',
     ];
-    // console.log(ranges);
+
+    function removeById(id) {
+        dispatch(profileActions.removeRangeById(id));
+    }
+    useEffect(() => {
+        setCountRanges(ranges.length);
+    }, [ranges]);
+
+    useEffect(() => {
+        if (wrapperRef.current) {
+            setValueHeight(`${wrapperRef.current.clientHeight}px`);
+            if (countRanges < 1) setIsShow(false);
+            else {
+                setValueHeight(`auto`);
+            }
+        }
+    }, [ranges, countRanges]);
+
     return (
-        <div
-            className={classNames(
-                cls.wrapperDay,
-                { [cls.left]: isLeft },
-                { [cls.right]: !isLeft }
-            )}
+        <CSSTransition
+            in={IsShow}
+            timeout={450}
+            classNames='fade'
+            unmountOnExit
         >
-            <div className={cls.day}>{`${day} ${arrMonth[monthId]}`}</div>
-            <div className={cls.timeList}>
-                {!isAllBusy && (
-                    <ul>
-                        {ranges.map((range, ind) => {
-                            return (
-                                <li key={ind}>
-                                    <div>
-                                        {`${getTimeFromDate(
-                                            range.startDate
-                                        )} - ${getTimeFromDate(range.endDate)}`}
-                                    </div>
-                                    <div
-                                        className={cls.deleteRange}
-                                        onClick={() => {
-                                            console.log(range);
-                                            removeRangeById(range.id);
-                                        }}
-                                    >
-                                        x
-                                    </div>
-                                </li>
-                            );
-                        })}
-                    </ul>
+            <div
+                className={classNames(
+                    cls.wrapperDay,
+                    { [cls.left]: isLeft },
+                    { [cls.right]: !isLeft }
                 )}
-                {isAllBusy && (
-                    <ul>
-                        <li>
-                            <div>Занят весь день</div>
-                            <div
-                                className={cls.deleteRange}
-                                onClick={() => removeRangeById(id)}
-                            >
-                                x
-                            </div>
-                        </li>
-                    </ul>
-                )}
+                style={{ height: valueHeight }}
+                ref={wrapperRef}
+            >
+                <div className={cls.day}>{`${day} ${arrMonth[monthId]}`}</div>
+
+                <ul>
+                    {ranges.map((range, ind) => (
+                        <BusyRange
+                            key={range.id}
+                            range={range}
+                            setCountRanges={setCountRanges}
+                            isAllBusy={isAllBusy}
+                        />
+                    ))}
+                </ul>
             </div>
-        </div>
+        </CSSTransition>
     );
 }

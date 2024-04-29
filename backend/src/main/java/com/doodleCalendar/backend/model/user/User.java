@@ -1,13 +1,18 @@
 package com.doodleCalendar.backend.model.user;
 
+import com.doodleCalendar.backend.model.busyness.Busyness;
 import com.doodleCalendar.backend.model.event.Event;
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
+import java.util.List;
 import java.util.Set;
 
-@Entity(name = "user_profile")
-@Data
+@Entity
+@Table(name = "user_profile")
+@Getter
+@Setter
+@NoArgsConstructor
 public class User {
 
     @Id
@@ -20,6 +25,9 @@ public class User {
     private String patronymic;
     private String email;
     private String password;
+    private String photoLink;
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+    private List<Busyness> busynesses;
     @ManyToMany
     private Set<Event> events;
 }

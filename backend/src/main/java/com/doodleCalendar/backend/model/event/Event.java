@@ -1,6 +1,7 @@
 package com.doodleCalendar.backend.model.event;
 
 import com.doodleCalendar.backend.model.user.User;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -16,12 +17,14 @@ public class Event {
     private Long id;
     private String title;
     private String description;
-    private LocalDateTime startEvent;
-    private LocalDateTime endEvent;
+    private LocalDateTime startsAt;
+    private LocalDateTime endsAt;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User author;
     @ElementCollection
     private Set<Integer> repeats;
     @ElementCollection
-    private Set<String> auditoriums;
+    private Set<String> rooms;
     @ManyToMany(mappedBy = "events")
     private Set<User> users;
 }

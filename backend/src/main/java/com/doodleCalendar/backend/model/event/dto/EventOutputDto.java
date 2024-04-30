@@ -1,6 +1,6 @@
 package com.doodleCalendar.backend.model.event.dto;
 
 public class EventOutputDto {
-    public long id;
+    public Long id;
     public String title;
 }

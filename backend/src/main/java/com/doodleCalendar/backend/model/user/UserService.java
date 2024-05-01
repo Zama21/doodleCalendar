@@ -1,6 +1,6 @@
 package com.doodleCalendar.backend.model.user;
 
-import com.doodleCalendar.backend.exception.NoSuchUserException;
+import com.doodleCalendar.backend.exception.types.NoSuchUserException;
 import com.doodleCalendar.backend.model.user.userDTO.UserInputDTO;
 import com.doodleCalendar.backend.model.user.userDTO.UserProfileOutputDTO;
 import com.doodleCalendar.backend.utils.UserMapper;

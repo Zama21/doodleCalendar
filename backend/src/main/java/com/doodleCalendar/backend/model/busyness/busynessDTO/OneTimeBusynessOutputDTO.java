@@ -8,6 +8,6 @@ import java.time.LocalDateTime;
 public class OneTimeBusynessOutputDTO {
 
     private Long id;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private LocalDateTime startDateTime;
+    private LocalDateTime endDateTime;
 }

@@ -1,4 +1,4 @@
-package com.doodleCalendar.backend.exception;
+package com.doodleCalendar.backend.exception.types;
 
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;

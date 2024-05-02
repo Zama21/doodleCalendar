@@ -23,8 +23,13 @@ public class EventController {
     private EventMapper eventMapper;
     private Long testUserId = 0L; // todo: когда сделаем авторизацию будем получать id исходя из токена/сессии в запросе
 
-    @GetMapping
-    public List<EventOutputDto> getEventsList() {
+    @GetMapping("/my")
+    public List<EventOutputDto> getMyEvents() {
+        List<Event> events = this.eventRepository.findAllByAuthorId(this.testUserId);
+        return events.stream().map(ev -> this.eventMapper.eventOutput(ev)).toList();
+    }
+    @GetMapping("/withMe")
+    public List<EventOutputDto> getEventsWithMe() {
         List<Event> events = this.eventRepository.findAllByAuthorId(this.testUserId);
         return events.stream().map(ev -> this.eventMapper.eventOutput(ev)).toList();
     }

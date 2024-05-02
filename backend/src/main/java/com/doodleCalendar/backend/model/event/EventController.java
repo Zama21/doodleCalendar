@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/events")
@@ -30,7 +31,7 @@ public class EventController {
     }
     @GetMapping("/withMe")
     public List<EventOutputDto> getEventsWithMe() {
-        List<Event> events = this.eventRepository.findAllByAuthorId(this.testUserId);
+        Set<Event> events = this.eventRepository.findEventsByMemberId(this.testUserId);
         return events.stream().map(ev -> this.eventMapper.eventOutput(ev)).toList();
     }
     @GetMapping("/{eventId}")

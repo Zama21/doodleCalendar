@@ -34,7 +34,7 @@ public class User {
     private String photoLink;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Busyness> busynesses;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "members")
     private Set<Event> events;
 
     public Boolean isBusyDuring(LocalDateTime startDateTime, LocalDateTime endDateTime) {

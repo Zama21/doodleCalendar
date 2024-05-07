@@ -1,6 +1,7 @@
 package com.doodleCalendar.backend.configuration;
 
 import com.doodleCalendar.backend.modules.event.Event;
+import com.doodleCalendar.backend.modules.event.Room;
 import com.doodleCalendar.backend.modules.event.eventDTO.EventInfoOutputDto;
 import com.doodleCalendar.backend.modules.event.eventDTO.EventMemberInfoDto;
 import com.doodleCalendar.backend.modules.user.User;
@@ -22,29 +23,11 @@ public class ModelMapperConfig {
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
-        configureEventsMapping(mapper);
-
         return mapper;
     }
 
-    private void configureEventsMapping(ModelMapper mapper) {
-        Converter<Set<User>, Set<EventMemberInfoDto>> membersConverter = context -> {
-            Event event = (Event)context.getParent().getSource();
-            Set<EventMemberInfoDto> memberInfoList = context.getSource().stream()
-                    .map(member -> {
-                        EventMemberInfoDto dto = mapper.map(member, EventMemberInfoDto.class);
-                        dto.isBusy = member.isBusyDuring(event.getStartsAt(), event.getEndsAt());
-                        return dto;
-                    }).collect(Collectors.toSet());
-            return memberInfoList;
-        };
-
-        TypeMap<Event, EventInfoOutputDto> eventToEventInfoMap = mapper.createTypeMap(Event.class, EventInfoOutputDto.class);
-        eventToEventInfoMap.addMappings(mapping -> {
-            mapping.using(membersConverter).map(Event::getMembers, EventInfoOutputDto::setMembers);
-        });
-
-//        Converter<Set<Integer>, Set<User>> memberIdsConverter = context -> {
+//    private void configureEventsMapping(ModelMapper mapper) {
+//        Converter<Set<User>, Set<EventMemberInfoDto>> membersConverter = context -> {
 //            Event event = (Event)context.getParent().getSource();
 //            Set<EventMemberInfoDto> memberInfoList = context.getSource().stream()
 //                    .map(member -> {
@@ -55,12 +38,14 @@ public class ModelMapperConfig {
 //            return memberInfoList;
 //        };
 //
-//        TypeMap<CreateEventInputDto, Event> createEventInputToEventMap = mapper.createTypeMap(CreateEventInputDto.class, Event.class);
-//        createEventInputToEventMap.addMappings(mapping -> {
-//            mapping.using(memberIdsConverter).map(CreateEventInputDto::getMembersIds, Event::setMembers);
+//        Converter<Set<Room>, Set<String>> roomsConverter = context ->
+//                context.getSource().stream().map(room -> room.getValue()).collect(Collectors.toSet());
+//
+//        TypeMap<Event, EventInfoOutputDto> eventToEventInfoMap = mapper.createTypeMap(Event.class, EventInfoOutputDto.class);
+//        eventToEventInfoMap.addMappings(mapping -> {
+//            mapping.using(membersConverter).map(Event::getMembers, EventInfoOutputDto::setMembers);
+//            mapping.using(roomsConverter).map(Event::getRooms, EventInfoOutputDto::setRooms);
 //        });
-
-
-    }
+//    }
 
 }

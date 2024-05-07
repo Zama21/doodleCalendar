@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class RoomService {
@@ -17,7 +18,10 @@ public class RoomService {
     private EventRepository eventRepository;
 
     public Set<Room> getFreeRooms(LocalDateTime startDateTime, LocalDateTime endDateTime) {
-        return new HashSet<>();
+        var allRooms = roomRepository.findAll();
+        var busyRooms = eventRepository.findBusyRoomsDuring(startDateTime, endDateTime);
+
+        return allRooms.stream().filter(room -> !busyRooms.contains(room)).collect(Collectors.toSet());
     }
 
 }

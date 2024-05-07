@@ -1,10 +1,10 @@
 package com.doodleCalendar.backend.utils;
 
-import com.doodleCalendar.backend.model.event.Event;
-import com.doodleCalendar.backend.model.event.eventDTO.CreateEventInputDto;
-import com.doodleCalendar.backend.model.event.eventDTO.EventInfoOutputDto;
-import com.doodleCalendar.backend.model.event.eventDTO.EventOutputDto;
-import com.doodleCalendar.backend.model.event.eventDTO.UpdateEventInputDto;
+import com.doodleCalendar.backend.modules.event.Event;
+import com.doodleCalendar.backend.modules.event.eventDTO.CreateEventInputDto;
+import com.doodleCalendar.backend.modules.event.eventDTO.EventInfoOutputDto;
+import com.doodleCalendar.backend.modules.event.eventDTO.EventOutputDto;
+import com.doodleCalendar.backend.modules.event.eventDTO.UpdateEventInputDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

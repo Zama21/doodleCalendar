@@ -1,10 +1,9 @@
 package com.doodleCalendar.backend.configuration;
 
-import com.doodleCalendar.backend.model.event.Event;
-import com.doodleCalendar.backend.model.event.eventDTO.CreateEventInputDto;
-import com.doodleCalendar.backend.model.event.eventDTO.EventInfoOutputDto;
-import com.doodleCalendar.backend.model.event.eventDTO.EventMemberInfoDto;
-import com.doodleCalendar.backend.model.user.User;
+import com.doodleCalendar.backend.modules.event.Event;
+import com.doodleCalendar.backend.modules.event.eventDTO.EventInfoOutputDto;
+import com.doodleCalendar.backend.modules.event.eventDTO.EventMemberInfoDto;
+import com.doodleCalendar.backend.modules.user.User;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeMap;

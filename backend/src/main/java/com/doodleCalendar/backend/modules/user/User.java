@@ -33,9 +33,9 @@ public class User {
     private String photoLink;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     private List<Busyness> busynesses;
-    @ElementCollection
-    @CollectionTable(indexes = @Index(name = "busy-days-index", columnList = "busyDays"))
-    private Set<LocalDate> busyDays; // caches busy days for optimization purposes
+//    @ElementCollection
+//    @CollectionTable(indexes = @Index(name = "busy-days-index", columnList = "busyDays"))
+//    private Set<LocalDate> busyDays; // caches busy days for optimization purposes
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "members")
     private Set<Event> events;
 

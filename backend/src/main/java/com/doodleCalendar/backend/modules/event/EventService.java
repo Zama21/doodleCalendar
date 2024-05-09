@@ -20,6 +20,9 @@ public class EventService {
     @Autowired
     private UserRepository userRepository;
     @Autowired
+    private RoomRepository roomRepository;
+
+    @Autowired
     private EventMapper eventMapper;
     public void hideEvent(Long eventId) {
         setEventHidden(eventId, true);
@@ -32,6 +35,8 @@ public class EventService {
         Event newEvent = eventMapper.createEventDtoToEntity(createEventDto);
         Set<User> members = userRepository.findByIdIn(createEventDto.membersIds);
         newEvent.setMembers(members);
+        Set<Room> rooms = roomRepository.findByValueIn(newEvent.rooms);
+        newEvent.setRooms(rooms);
         eventRepository.save(newEvent);
     }
 
@@ -40,6 +45,8 @@ public class EventService {
         updatedEvent.setId(eventId);
         Set<User> members = userRepository.findByIdIn(updateEventDto.membersIds);
         updatedEvent.setMembers(members);
+        Set<Room> rooms = roomRepository.findByValueIn(updateEventDto.rooms);
+        updatedEvent.setRooms(rooms);
         eventRepository.save(updatedEvent);
     }
 

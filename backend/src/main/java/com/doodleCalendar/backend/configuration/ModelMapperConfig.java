@@ -25,27 +25,4 @@ public class ModelMapperConfig {
 
         return mapper;
     }
-
-//    private void configureEventsMapping(ModelMapper mapper) {
-//        Converter<Set<User>, Set<EventMemberInfoDto>> membersConverter = context -> {
-//            Event event = (Event)context.getParent().getSource();
-//            Set<EventMemberInfoDto> memberInfoList = context.getSource().stream()
-//                    .map(member -> {
-//                        EventMemberInfoDto dto = mapper.map(member, EventMemberInfoDto.class);
-//                        dto.isBusy = member.isBusyDuring(event.getStartsAt(), event.getEndsAt());
-//                        return dto;
-//                    }).collect(Collectors.toSet());
-//            return memberInfoList;
-//        };
-//
-//        Converter<Set<Room>, Set<String>> roomsConverter = context ->
-//                context.getSource().stream().map(room -> room.getValue()).collect(Collectors.toSet());
-//
-//        TypeMap<Event, EventInfoOutputDto> eventToEventInfoMap = mapper.createTypeMap(Event.class, EventInfoOutputDto.class);
-//        eventToEventInfoMap.addMappings(mapping -> {
-//            mapping.using(membersConverter).map(Event::getMembers, EventInfoOutputDto::setMembers);
-//            mapping.using(roomsConverter).map(Event::getRooms, EventInfoOutputDto::setRooms);
-//        });
-//    }
-
 }

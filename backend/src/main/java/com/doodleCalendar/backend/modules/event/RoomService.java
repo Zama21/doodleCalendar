@@ -19,9 +19,9 @@ public class RoomService {
 
     public Set<Room> getFreeRooms(LocalDateTime startDateTime, LocalDateTime endDateTime) {
         var allRooms = roomRepository.findAll();
-        var busyRooms = eventRepository.findBusyRoomsDuring(startDateTime, endDateTime);
+        Set<Room> busyRooms = eventRepository.findBusyRoomsDuring(startDateTime, endDateTime);
 
-        return allRooms.stream().filter(room -> !busyRooms.contains(room)).collect(Collectors.toSet());
+        return allRooms.stream().filter(room -> busyRooms.stream().noneMatch(busyRoom -> busyRoom.getValue().equals(room.getValue()))).collect(Collectors.toSet());
     }
 
 }

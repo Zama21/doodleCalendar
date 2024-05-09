@@ -11,11 +11,11 @@ import java.util.Set;
 public interface EventRepository extends JpaRepository<Event, Long> {
     Set<Event> findAllByAuthorId(Long authorId);
 
-    @Query("SELECT e FROM Event e JOIN e.members m ON m.id = :memberId")
+    @Query("SELECT e FROM Event e JOIN e.members m WHERE m.id = :memberId")
     Set<Event> findEventsWithMember(@Param("memberId") Long memberId);
 
-    @Query("SELECT e FROM Event e WHERE e.ends_at >= :start AND e.starts_at <= :end")
+    @Query("SELECT e FROM Event e WHERE e.endsAt >= :start AND e.startsAt <= :end")
     Set<Event> findEventsDuring(@Param("start") LocalDateTime startDateTime, @Param("end") LocalDateTime endDateTime);
-    @Query("SELECT r FROM Event e JOIN e.rooms r ON r.event_id = e.id WHERE e.ends_at >= :start AND e.starts_at <= :end")
+    @Query("SELECT DISTINCT r FROM Event e JOIN e.rooms r WHERE e.endsAt >= :start AND e.startsAt <= :end")
     Set<Room> findBusyRoomsDuring(@Param("start") LocalDateTime startDateTime, @Param("end") LocalDateTime endDateTime);
 }

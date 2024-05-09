@@ -14,8 +14,8 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("SELECT e FROM Event e JOIN e.members m WHERE m.id = :memberId")
     Set<Event> findEventsWithMember(@Param("memberId") Long memberId);
 
-    @Query("SELECT e FROM Event e WHERE e.endsAt >= :start AND e.startsAt <= :end")
+    @Query("SELECT e FROM Event e WHERE e.endsAt > :start AND e.startsAt < :end")
     Set<Event> findEventsDuring(@Param("start") LocalDateTime startDateTime, @Param("end") LocalDateTime endDateTime);
-    @Query("SELECT DISTINCT r FROM Event e JOIN e.rooms r WHERE e.endsAt >= :start AND e.startsAt <= :end")
+    @Query("SELECT DISTINCT r FROM Event e JOIN e.rooms r WHERE e.endsAt > :start AND e.startsAt < :end")
     Set<Room> findBusyRoomsDuring(@Param("start") LocalDateTime startDateTime, @Param("end") LocalDateTime endDateTime);
 }

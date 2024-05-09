@@ -35,7 +35,7 @@ public class EventService {
         Event newEvent = eventMapper.createEventDtoToEntity(createEventDto);
         Set<User> members = userRepository.findByIdIn(createEventDto.membersIds);
         newEvent.setMembers(members);
-        Set<Room> rooms = roomRepository.findByValueIn(newEvent.rooms);
+        Set<Room> rooms = roomRepository.findByValueIn(createEventDto.rooms);
         newEvent.setRooms(rooms);
         eventRepository.save(newEvent);
     }

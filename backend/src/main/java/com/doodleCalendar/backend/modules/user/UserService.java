@@ -38,7 +38,7 @@ public class UserService {
         Set<User> freeUsers = new HashSet<>();
 
         for (var user: users) {
-            if (user.isBusyDuring(startDateTime, endDateTime)) {
+            if (!user.isBusyDuring(startDateTime, endDateTime)) {
                 freeUsers.add(user);
             }
         }

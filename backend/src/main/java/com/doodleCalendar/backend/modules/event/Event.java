@@ -25,7 +25,7 @@ public class Event {
     private User author;
     @ElementCollection
     private Set<Integer> repeatDays;
-    @OneToMany()
+    @ManyToMany()
     private Set<Room> rooms;
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinTable

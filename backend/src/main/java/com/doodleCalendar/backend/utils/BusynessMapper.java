@@ -1,10 +1,10 @@
 package com.doodleCalendar.backend.utils;
 
-import com.doodleCalendar.backend.model.busyness.Busyness;
-import com.doodleCalendar.backend.model.busyness.busynessDTO.OneTimeBusynessInputDTO;
-import com.doodleCalendar.backend.model.busyness.busynessDTO.OneTimeBusynessOutputDTO;
-import com.doodleCalendar.backend.model.busyness.busynessDTO.RepeatsBusynessInputDTO;
-import com.doodleCalendar.backend.model.busyness.busynessDTO.RepeatsBusynessOutputDTO;
+import com.doodleCalendar.backend.modules.busyness.Busyness;
+import com.doodleCalendar.backend.modules.busyness.busynessDTO.OneTimeBusynessInputDTO;
+import com.doodleCalendar.backend.modules.busyness.busynessDTO.OneTimeBusynessOutputDTO;
+import com.doodleCalendar.backend.modules.busyness.busynessDTO.RepeatsBusynessInputDTO;
+import com.doodleCalendar.backend.modules.busyness.busynessDTO.RepeatsBusynessOutputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

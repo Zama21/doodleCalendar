@@ -1,8 +1,8 @@
 package com.doodleCalendar.backend.utils;
 
-import com.doodleCalendar.backend.model.user.User;
-import com.doodleCalendar.backend.model.user.userDTO.UserInputDTO;
-import com.doodleCalendar.backend.model.user.userDTO.UserProfileOutputDTO;
+import com.doodleCalendar.backend.modules.user.User;
+import com.doodleCalendar.backend.modules.user.userDTO.UserInputDTO;
+import com.doodleCalendar.backend.modules.user.userDTO.UserProfileOutputDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

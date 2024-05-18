@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Set;
@@ -22,6 +23,8 @@ public class Busyness {
     private Long id;
     private LocalTime startTime;
     private LocalTime endTime;
+    private LocalDate startDate;
+    private LocalDate endDate;
     private int repeatWeekDay;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;

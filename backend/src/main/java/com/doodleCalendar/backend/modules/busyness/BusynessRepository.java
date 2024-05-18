@@ -11,4 +11,5 @@ public interface BusynessRepository extends JpaRepository<Busyness, Long> {
     List<Busyness> findAllByUserIdAndRepeatWeekDayIsNull(Long userId);
 
     List<Busyness> findAllByUserIdAndRepeatWeekDayIsNotNull(Long userId);
+    void deleteByUserId(Long userId);
 }

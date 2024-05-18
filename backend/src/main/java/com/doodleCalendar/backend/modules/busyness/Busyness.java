@@ -25,8 +25,7 @@ public class Busyness {
     private LocalTime endTime;
     private LocalDate startDate;
     private LocalDate endDate;
-    @Column(nullable = true)
-    private Integer repeatWeekDay;
+    private int repeatWeekDay;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 }

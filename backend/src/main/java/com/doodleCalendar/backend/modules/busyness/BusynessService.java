@@ -1,10 +1,15 @@
 package com.doodleCalendar.backend.modules.busyness;
 
+
 import com.doodleCalendar.backend.modules.busyness.busynessDTO.OneTimeBusynessInputDTO;
 import com.doodleCalendar.backend.modules.busyness.busynessDTO.OneTimeBusynessOutputDTO;
+import com.doodleCalendar.backend.exception.types.NoSuchUserException;
 import com.doodleCalendar.backend.modules.busyness.busynessDTO.RepeatsBusynessInputDTO;
 import com.doodleCalendar.backend.modules.busyness.busynessDTO.RepeatsBusynessOutputDTO;
+import com.doodleCalendar.backend.modules.user.User;
+import com.doodleCalendar.backend.modules.user.UserRepository;
 import com.doodleCalendar.backend.utils.BusynessMapper;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +22,8 @@ public class BusynessService {
     private BusynessRepository busynessRepository;
     @Autowired
     private BusynessMapper busynessMapper;
+    @Autowired
+    private UserRepository userRepository;
 
     public List<OneTimeBusynessOutputDTO> getNoRepeatsBusyness(Long userId){
         List<Busyness> busynesses = busynessRepository.findAllByUserIdAndRepeatWeekDayIsNull(userId);
@@ -28,16 +35,26 @@ public class BusynessService {
         return busynesses.stream().map(x -> busynessMapper.RepeatsBusynessOutput(x)).toList();
     }
 
-    public List<RepeatsBusynessOutputDTO> createRepeatsBusyness(List<RepeatsBusynessInputDTO> busynessInputDTOs){
+    @Transactional
+    public List<RepeatsBusynessOutputDTO> createRepeatsBusyness(List<RepeatsBusynessInputDTO> busynessInputDTOs,
+                                                                Long userId){
         List<Busyness> busynesses = busynessInputDTOs.stream().map(
                 x -> busynessMapper.RepeatsBusynessInput(x)).toList();
+        User user = userRepository.findById(userId).orElseThrow(NoSuchUserException::new);
+        busynesses.forEach(item -> item.setUser(user));
+        busynessRepository.deleteByUserId(userId);
         busynessRepository.saveAll(busynesses);
         return busynesses.stream().map(x -> busynessMapper.RepeatsBusynessOutput(x)).toList();
     }
 
-    public List<OneTimeBusynessOutputDTO> createOneTimesBusyness(List<OneTimeBusynessInputDTO> busynessInputDTOs){
+    @Transactional
+    public List<OneTimeBusynessOutputDTO> createOneTimesBusyness(List<OneTimeBusynessInputDTO> busynessInputDTOs,
+                                                                 Long userId){
         List<Busyness> busynesses = busynessInputDTOs.stream().map(
                 x -> busynessMapper.OneTimeBusynessInput(x)).toList();
+        User user = userRepository.findById(userId).orElseThrow(NoSuchUserException::new);
+        busynesses.forEach(item -> item.setUser(user));
+        busynessRepository.deleteByUserId(userId);
         busynessRepository.saveAll(busynesses);
         return busynesses.stream().map(x -> busynessMapper.OneTimeBusynessOutput(x)).toList();
     }

@@ -42,7 +42,7 @@ public class BusynessController {
             array = @ArraySchema(schema = @Schema(implementation = OneTimeBusynessOutputDTO.class))))
     public List<OneTimeBusynessOutputDTO> createOneTimeBusyness(
             @PathVariable Long userId, @RequestBody List<OneTimeBusynessInputDTO> busynessInputDTO){
-        return busynessService.createOneTimesBusyness(busynessInputDTO);
+        return busynessService.createOneTimesBusyness(busynessInputDTO, userId);
     }
 
     @PostMapping("/post-repeat/{userId}")
@@ -51,6 +51,6 @@ public class BusynessController {
             array = @ArraySchema(schema = @Schema(implementation = RepeatsBusynessOutputDTO.class))))
     public List<RepeatsBusynessOutputDTO> createRepeatsBusyness(
             @PathVariable Long userId, @RequestBody List<RepeatsBusynessInputDTO> busynessInputDTO){
-        return busynessService.createRepeatsBusyness(busynessInputDTO);
+        return busynessService.createRepeatsBusyness(busynessInputDTO, userId);
     }
 }

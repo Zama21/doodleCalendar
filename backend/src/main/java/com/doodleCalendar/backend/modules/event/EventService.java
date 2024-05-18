@@ -1,6 +1,7 @@
 package com.doodleCalendar.backend.modules.event;
 
 import com.doodleCalendar.backend.modules.event.eventDTO.CreateEventInputDto;
+import com.doodleCalendar.backend.modules.event.eventDTO.EventForMonthOutputDTO;
 import com.doodleCalendar.backend.modules.event.eventDTO.EventInfoOutputDto;
 import com.doodleCalendar.backend.modules.event.eventDTO.UpdateEventInputDto;
 import com.doodleCalendar.backend.exception.types.NoSuchEventException;
@@ -11,6 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.Year;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -61,7 +66,17 @@ public class EventService {
         eventRepository.save(event);
     }
 
+    public List<EventForMonthOutputDTO> getEventForMonth(int idMonth){
+        int currentYear = Year.now().getValue();
+        YearMonth yearMonth = YearMonth.of(currentYear, idMonth);
+        LocalDateTime startOfMonth = yearMonth.atDay(1).atStartOfDay();
+        LocalDateTime endOfMonth = yearMonth.atEndOfMonth().atTime(23, 59, 59);
+        LocalDateTime weekBeforeStart = startOfMonth.minusWeeks(1);
+        LocalDateTime weekAfterEnd = endOfMonth.plusWeeks(1);
 
+        List<Event> events = eventRepository.findByStartsAtBetween(weekBeforeStart, weekAfterEnd);
+        return events.stream().map(x -> eventMapper.eventToEventForMonthOutputDTO(x)).toList();
+    }
 
 
 }

@@ -57,4 +57,7 @@ public class EventMapper {
         return modelMapper.map(dto, Event.class);
     }
 
+    public EventForMonthOutputDTO eventToEventForMonthOutputDTO(Event event){
+        return modelMapper.map(event, EventForMonthOutputDTO.class);
+    }
 }

@@ -1,13 +1,11 @@
 package com.doodleCalendar.backend.modules.event;
 
-import com.doodleCalendar.backend.modules.event.eventDTO.CreateEventInputDto;
-import com.doodleCalendar.backend.modules.event.eventDTO.EventInfoOutputDto;
-import com.doodleCalendar.backend.modules.event.eventDTO.EventOutputDto;
-import com.doodleCalendar.backend.modules.event.eventDTO.UpdateEventInputDto;
+import com.doodleCalendar.backend.modules.event.eventDTO.*;
 import com.doodleCalendar.backend.utils.EventMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -55,6 +53,11 @@ public class EventController {
     @PostMapping("/{eventId}/show")
     public void showEvent(@PathVariable Long eventId) {
         eventService.showEvent(eventId);
+    }
+
+    @GetMapping("/{monthId}")
+    public List<EventForMonthOutputDTO> getEventForMonth(@PathVariable int monthId){
+        return eventService.getEventForMonth(monthId);
     }
 
 

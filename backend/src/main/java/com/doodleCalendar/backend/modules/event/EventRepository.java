@@ -4,7 +4,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 //@Repository
@@ -18,4 +20,6 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     Set<Event> findEventsDuring(@Param("start") LocalDateTime startDateTime, @Param("end") LocalDateTime endDateTime);
     @Query("SELECT DISTINCT r FROM Event e JOIN e.rooms r WHERE e.endsAt > :start AND e.startsAt < :end")
     Set<Room> findBusyRoomsDuring(@Param("start") LocalDateTime startDateTime, @Param("end") LocalDateTime endDateTime);
+
+    List<Event> findByStartsAtBetween(LocalDateTime start, LocalDateTime end);
 }

@@ -3,6 +3,8 @@ package com.doodleCalendar.backend.utils;
 import com.doodleCalendar.backend.modules.event.Event;
 import com.doodleCalendar.backend.modules.event.Room;
 import com.doodleCalendar.backend.modules.event.eventDTO.*;
+import com.doodleCalendar.backend.modules.event.eventDTO.calendar.EventForMonthOutputDTO;
+import com.doodleCalendar.backend.modules.event.eventDTO.calendar.EventForMonthWithRoomsOutputDTO;
 import com.doodleCalendar.backend.modules.user.User;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
@@ -22,7 +24,7 @@ public class EventMapper {
     public EventMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
         Converter<Set<User>, Set<EventMemberInfoDto>> membersEntityToDtoConverter = context -> {
-            Event event = (Event)context.getParent().getSource();
+            Event event = (Event) context.getParent().getSource();
             Set<EventMemberInfoDto> memberInfoList = context.getSource().stream()
                     .map(member -> {
                         EventMemberInfoDto dto = modelMapper.map(member, EventMemberInfoDto.class);
@@ -53,11 +55,16 @@ public class EventMapper {
     public Event createEventDtoToEntity(CreateEventInputDto dto) {
         return modelMapper.map(dto, Event.class);
     }
+
     public Event updateEventDtoToEntity(UpdateEventInputDto dto) {
         return modelMapper.map(dto, Event.class);
     }
 
-    public EventForMonthOutputDTO eventToEventForMonthOutputDTO(Event event){
+    public EventForMonthOutputDTO eventToEventForMonthOutputDTO(Event event) {
         return modelMapper.map(event, EventForMonthOutputDTO.class);
+    }
+
+    public EventForMonthWithRoomsOutputDTO eventToEventForMonthWithRoomsOutputDTO(Event event) {
+        return modelMapper.map(event, EventForMonthWithRoomsOutputDTO.class);
     }
 }

@@ -34,14 +34,20 @@ public class EventMapper {
             return memberInfoList;
         };
 
-        Converter<Set<Room>, Set<String>> roomsEntityToDtoConverter = context ->
+        Converter<Set<Room>, Set<String>> roomsToStringsConverter = context ->
                 context.getSource().stream().map(room -> room.getValue()).collect(Collectors.toSet());
 
         TypeMap<Event, EventInfoOutputDto> eventToEventInfoMap = modelMapper.createTypeMap(Event.class, EventInfoOutputDto.class);
         eventToEventInfoMap.addMappings(mapping -> {
             mapping.using(membersEntityToDtoConverter).map(Event::getMembers, EventInfoOutputDto::setMembers);
-            mapping.using(roomsEntityToDtoConverter).map(Event::getRooms, EventInfoOutputDto::setRooms);
+            mapping.using(roomsToStringsConverter).map(Event::getRooms, EventInfoOutputDto::setRooms);
         });
+
+        TypeMap<Event, EventForMonthWithRoomsOutputDTO> eventToEventWithRoomsOutputMap = modelMapper.createTypeMap(Event.class, EventForMonthWithRoomsOutputDTO.class);
+        eventToEventWithRoomsOutputMap.addMappings(mapping -> {
+            mapping.using(roomsToStringsConverter).map(Event::getRooms, EventForMonthWithRoomsOutputDTO::setRooms);
+        });
+
     }
 
     public EventOutputDto eventOutput(Event event) {
